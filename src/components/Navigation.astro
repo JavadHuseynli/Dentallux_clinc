@@ -1,0 +1,258 @@
+---
+// Navigation Component - Frame 6 Design
+import LanguageSwitcher from './LanguageSwitcher.astro';
+---
+
+<nav class="navbar">
+  <div class="container-custom">
+    <div class="nav-wrapper">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="/">
+          <img
+            src="/images/logo/dentalux-logo.jpg"
+            alt="Dentalux-i Estetik diş klinikası"
+            class="logo-image"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-menu desktop-menu">
+        <li><a href="#home" class="nav-link" data-i18n="nav_home">Ana Səhifə</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">Haqqımızda</a></li>
+        <li class="nav-dropdown">
+          <a href="#services" class="nav-link">
+            <span data-i18n="nav_services">Xidmətlər</span>
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Əlaqə</a></li>
+        <li><a href="#blog" class="nav-link" data-i18n="nav_blog">Bloq</a></li>
+      </ul>
+
+      <!-- Language Switcher & CTA -->
+      <div class="nav-actions desktop-menu">
+        <LanguageSwitcher />
+        <a href="#appointment" class="btn-appointment" data-i18n="nav_appointment">Qəbul</a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#home" class="nav-link" data-i18n="nav_home">Ana Səhifə</a></li>
+      <li><a href="#about" class="nav-link" data-i18n="nav_about">Haqqımızda</a></li>
+      <li><a href="#services" class="nav-link" data-i18n="nav_services">Xidmətlər</a></li>
+      <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Əlaqə</a></li>
+      <li><a href="#blog" class="nav-link" data-i18n="nav_blog">Bloq</a></li>
+      <li class="mobile-lang-switcher">
+        <LanguageSwitcher />
+      </li>
+      <li><a href="#appointment" class="btn-appointment mobile-btn" data-i18n="nav_appointment">Qəbul</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+  }
+
+  .logo-image {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
+  .logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    align-items: center;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .btn-appointment {
+    background: var(--primary);
+    color: white;
+    padding: 10px 24px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-appointment:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 84, 179, 0.3);
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: var(--shadow-lg);
+    padding: 1rem 0;
+  }
+
+  .mobile-menu.active {
+    display: block;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-menu ul li {
+    padding: 0.75rem 2rem;
+  }
+
+  .mobile-btn {
+    display: block;
+    text-align: center;
+    margin: 0.5rem 2rem;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .mobile-lang-switcher {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-menu {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .logo-image {
+      height: 50px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .logo-image {
+      height: 45px;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('active');
+    mobileMenuToggle?.classList.toggle('active');
+  });
+
+  const mobileLinks = mobileMenu?.querySelectorAll('.nav-link');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.remove('active');
+      mobileMenuToggle?.classList.remove('active');
+    });
+  });
+</script>

@@ -1,0 +1,301 @@
+---
+// Why Choose Us Component - Modern Design with Icons
+const features = [
+  {
+    id: 1,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+    </svg>`,
+    title: "Müasir Texnologiya",
+    description: "Ən son diş texnologiyaları, rəqəmsal rentgen, 3D görüntüləmə və lazerlə müalicə."
+  },
+  {
+    id: 2,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+    </svg>`,
+    title: "Əhatəli Xidmətlər",
+    description: "Adi yoxlamalardan mürəkkəb kosmetik və bərpaedici prosedurlarıa qədər tam xidmət."
+  },
+  {
+    id: 3,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+    </svg>`,
+    title: "Təcrübəli Komanda",
+    description: "Yüksək ixtisaslı və mehriban diş həkimləri komandamız onilliklərə yayılan təcrübəyə malikdir."
+  },
+  {
+    id: 4,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+    </svg>`,
+    title: "Pasiyent Mərkəzli Yanaşma",
+    description: "Açıq ünsiyyət və pasiyent təhsilinə üstünlük veririk, rahat mühit təmin edirik."
+  }
+];
+---
+
+<section class="why-choose-section section-padding">
+  <div class="container-custom">
+    <div class="section-header">
+      <div>
+        <span class="section-badge">ÜSTÜNLÜKLƏRİMİZ</span>
+        <h2 class="section-title">Niyə Bizi Seçməlisiniz?</h2>
+        <p class="section-subtitle">Pasiyentlərimiz Niyə Gülüşlərini Bizə Etibar Edirlər</p>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      {features.map((feature, index) => (
+        <div class="feature-card" data-animate={`delay-${index + 1}`}>
+          <div class="feature-icon">
+            <div class="icon-wrapper" set:html={feature.icon}></div>
+          </div>
+          <div class="feature-content">
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-choose-section {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-choose-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: radial-gradient(circle at top center, rgba(25, 84, 179, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: #EFF6FF;
+    color: var(--primary);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .feature-card[data-animate="delay-1"] {
+    animation-delay: 0.1s;
+  }
+
+  .feature-card[data-animate="delay-2"] {
+    animation-delay: 0.2s;
+  }
+
+  .feature-card[data-animate="delay-3"] {
+    animation-delay: 0.3s;
+  }
+
+  .feature-card[data-animate="delay-4"] {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #60A5FA);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .feature-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 20px 40px rgba(25, 84, 179, 0.12);
+    transform: translateY(-8px);
+    border-color: rgba(25, 84, 179, 0.2);
+  }
+
+  .feature-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    border-radius: var(--radius-lg);
+    transition: all 0.4s ease;
+  }
+
+  .feature-card:hover .feature-icon {
+    background: linear-gradient(135deg, var(--primary) 0%, #2563EB 100%);
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    color: var(--primary);
+    transition: all 0.4s ease;
+  }
+
+  .feature-card:hover .icon-wrapper {
+    color: white;
+  }
+
+  .icon-wrapper svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .feature-content {
+    position: relative;
+  }
+
+  .feature-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+
+  .feature-card:hover .feature-content h3 {
+    color: var(--primary);
+  }
+
+  .feature-content p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 968px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .section-title {
+      font-size: 34px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .section-title {
+      font-size: 30px;
+    }
+
+    .feature-card {
+      padding: 28px 20px;
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    .icon-wrapper {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for animation on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.feature-card').forEach(card => {
+    card.style.animationPlayState = 'paused';
+    observer.observe(card);
+  });
+</script>

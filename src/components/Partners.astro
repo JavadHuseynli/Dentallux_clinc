@@ -1,0 +1,264 @@
+---
+// Partners Slideshow Section
+const partners = [
+  { name: "Partner 1", color: "#3B82F6" },
+  { name: "Partner 2", color: "#8B5CF6" },
+  { name: "Partner 3", color: "#10B981" },
+  { name: "Partner 4", color: "#F59E0B" },
+  { name: "Partner 5", color: "#EF4444" },
+  { name: "Partner 6", color: "#06B6D4" },
+  { name: "Partner 7", color: "#EC4899" },
+  { name: "Partner 8", color: "#6366F1" },
+];
+---
+
+<section class="partners-section">
+  <div class="container-custom">
+    <div class="section-header-center">
+      <span class="section-badge" data-i18n="partners_badge">TƏRƏFDAŞLAR</span>
+      <h2 class="section-title" data-i18n="partners_title">Etibarlı Tərəfdaşlarımız</h2>
+      <p class="section-subtitle" data-i18n="partners_subtitle">
+        Aparıcı diş brendləri və təşkilatları ilə əməkdaşlıq
+      </p>
+    </div>
+
+    <div class="partners-slider-wrapper">
+      <div class="partners-slider">
+        <div class="partners-track">
+          {partners.map((partner) => (
+            <div class="partner-card">
+              <div class="partner-logo" style={`background: linear-gradient(135deg, ${partner.color} 0%, ${partner.color}dd 100%)`}>
+                <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="35" r="15" fill="white" opacity="0.9"/>
+                  <path d="M35 50 Q40 45 50 45 Q60 45 65 50" stroke="white" stroke-width="3" fill="none" opacity="0.9"/>
+                  <rect x="30" y="60" width="40" height="25" rx="4" fill="white" opacity="0.9"/>
+                  <text x="50" y="75" font-size="10" fill={partner.color} text-anchor="middle" font-weight="bold">DENTAL</text>
+                </svg>
+              </div>
+              <h4>{partner.name}</h4>
+            </div>
+          ))}
+          <!-- Duplicate for seamless loop -->
+          {partners.map((partner) => (
+            <div class="partner-card">
+              <div class="partner-logo" style={`background: linear-gradient(135deg, ${partner.color} 0%, ${partner.color}dd 100%)`}>
+                <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="35" r="15" fill="white" opacity="0.9"/>
+                  <path d="M35 50 Q40 45 50 45 Q60 45 65 50" stroke="white" stroke-width="3" fill="none" opacity="0.9"/>
+                  <rect x="30" y="60" width="40" height="25" rx="4" fill="white" opacity="0.9"/>
+                  <text x="50" y="75" font-size="10" fill={partner.color} text-anchor="middle" font-weight="bold">DENTAL</text>
+                </svg>
+              </div>
+              <h4>{partner.name}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Auto-play slideshow
+  const track = document.querySelector('.partners-track');
+
+  // Pause on hover
+  track?.addEventListener('mouseenter', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  track?.addEventListener('mouseleave', () => {
+    track.style.animationPlayState = 'running';
+  });
+</script>
+
+<style>
+  .partners-section {
+    padding: 60px 0;
+    background: white;
+    overflow: hidden;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .partners-slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .partners-slider {
+    overflow: hidden;
+    padding: 20px 0;
+    position: relative;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .partners-track {
+    display: flex;
+    gap: 40px;
+    animation: scroll 30s linear infinite;
+    width: fit-content;
+  }
+
+  .partner-card {
+    flex-shrink: 0;
+    width: 200px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary);
+  }
+
+  .partner-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .partner-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-200px * 8 - 40px * 8));
+    }
+  }
+
+  @media (max-width: 968px) {
+    .section-title {
+      font-size: 30px;
+    }
+
+    .partners-track {
+      gap: 30px;
+    }
+
+    .partner-card {
+      width: 180px;
+      padding: 24px 16px;
+    }
+
+    .partner-logo {
+      width: 100px;
+      height: 100px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-180px * 8 - 30px * 8));
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .partners-section {
+      padding: 40px 0;
+    }
+
+    .section-header-center {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 26px;
+    }
+
+    .partner-card {
+      width: 160px;
+      padding: 20px 12px;
+    }
+
+    .partner-logo {
+      width: 90px;
+      height: 90px;
+    }
+
+    .partners-slider {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 5%,
+        black 95%,
+        transparent
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 5%,
+        black 95%,
+        transparent
+      );
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-160px * 8 - 30px * 8));
+      }
+    }
+  }
+
+  /* Pause animation on reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .partners-track {
+      animation: none;
+    }
+  }
+</style>
