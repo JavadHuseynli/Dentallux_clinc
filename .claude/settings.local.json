@@ -4,7 +4,8 @@
       "Bash(test -d node_modules)",
       "Bash(npm run dev:*)",
       "Bash(node:*)",
-      "Bash(npx astro:*)"
+      "Bash(npx astro:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

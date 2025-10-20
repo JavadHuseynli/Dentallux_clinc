@@ -246,40 +246,45 @@ const clinics = [
   const doctorData = {
     1: {
       name: "Dr. Aytən Zamanova",
-      specialty: "General Dentistry",
-      experience: "15+ years",
+      specialty: "Baş həkim",
+      experience: "8+ years",
+      image: "/images/doctors/drayten.png",
       education: "DDS - Harvard School of Dental Medicine",
-      bio: "Dr. Johnson is a highly experienced general dentist specializing in preventive care and restorative dentistry. She is passionate about helping patients maintain healthy smiles.",
+      bio: "Dr. Zamanova is a highly experienced general dentist specializing in preventive care and restorative dentistry. She is passionate about helping patients maintain healthy smiles.",
       services: ["Routine Check-ups", "Teeth Cleaning", "Fillings", "Root Canal"]
     },
     2: {
-      name: "Dr. Michael Chen",
-      specialty: "Orthodontics",
-      experience: "12+ years",
+      name: "Dr. Nurlan Cavadzadə",
+      specialty: "Ortopedik",
+      experience: "8+ years",
+      image: "/images/doctors/javadzadeh.jpg",
       education: "DMD - University of Pennsylvania",
-      bio: "Dr. Chen specializes in orthodontic treatments including braces and Invisalign. He has helped thousands of patients achieve their perfect smile.",
+      bio: "Dr. Javadzadeh specializes in orthodontic treatments including braces and Invisalign. He has helped thousands of patients achieve their perfect smile.",
       services: ["Braces", "Invisalign", "Retainers", "Bite Correction"]
     },
     3: {
-      name: "Dr. Emily Martinez",
+      name: "Dr. Emil Nağıyev",
       specialty: "Cosmetic Dentistry",
       experience: "10+ years",
+      image: "/images/doctors/nagiyev_emil.jpeg",
       education: "DDS - UCLA School of Dentistry",
-      bio: "Dr. Martinez is an expert in cosmetic dentistry, offering smile makeovers and aesthetic dental treatments with outstanding results.",
+      bio: "Dr. Nagiyev is an expert in cosmetic dentistry, offering smile makeovers and aesthetic dental treatments with outstanding results.",
       services: ["Veneers", "Teeth Whitening", "Bonding", "Smile Makeover"]
     },
     4: {
-      name: "Dr. David Williams",
-      specialty: "Oral Surgery",
-      experience: "18+ years",
+      name: "Dr. Ayşən Abbaslı",
+      specialty: "Cosmetic Dentistry",
+      experience: "10+ years",
+      image: "/images/doctors/dr_aysen.jpg",
       education: "DMD - Columbia University",
-      bio: "Dr. Williams is a skilled oral surgeon with extensive experience in dental implants, extractions, and jaw surgery.",
-      services: ["Dental Implants", "Wisdom Teeth Removal", "Jaw Surgery", "Bone Grafting"]
+      bio: "Dr. Abbasli is a skilled cosmetic dentist with extensive experience in dental aesthetics and smile transformations.",
+      services: ["Veneers", "Teeth Whitening", "Bonding", "Smile Makeover"]
     },
     5: {
       name: "Dr. Lisa Anderson",
       specialty: "Pediatric Dentistry",
       experience: "14+ years",
+      image: "/images/doctors/placeholder.jpg",
       education: "DDS - Boston University",
       bio: "Dr. Anderson specializes in pediatric dentistry, creating a fun and comfortable environment for children's dental care.",
       services: ["Children's Check-ups", "Fluoride Treatments", "Sealants", "Early Orthodontics"]
@@ -288,6 +293,7 @@ const clinics = [
       name: "Dr. James Wilson",
       specialty: "Periodontics",
       experience: "16+ years",
+      image: "/images/doctors/placeholder.jpg",
       education: "DMD - University of Michigan",
       bio: "Dr. Wilson is a periodontal specialist focusing on gum health, implants, and treating gum disease with advanced techniques.",
       services: ["Gum Disease Treatment", "Dental Implants", "Gum Grafting", "Bone Regeneration"]
@@ -315,25 +321,64 @@ const clinics = [
         const yearsPracticeLabel = translations[lang]?.clinic_modal_years_practice || 'years of professional practice';
 
         modalBody.innerHTML = `
-          <h2>${doctor.name}</h2>
-          <p class="modal-specialty">${doctor.specialty}</p>
-          <div class="modal-section">
-            <h3>${educationLabel}</h3>
-            <p>${doctor.education}</p>
+          <div class="modal-header-visual">
+            <div class="modal-doctor-image">
+              <img src="${doctor.image || '/images/doctors/placeholder.jpg'}" alt="${doctor.name}" />
+              <div class="modal-verified-badge">
+                <svg width="24" height="24" fill="white" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+            </div>
+            <div class="modal-header-info">
+              <h2>${doctor.name}</h2>
+              <p class="modal-specialty">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                </svg>
+                ${doctor.specialty}
+              </p>
+              <div class="modal-experience-badge">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                </svg>
+                <span>${doctor.experience} ${yearsPracticeLabel}</span>
+              </div>
+            </div>
           </div>
-          <div class="modal-section">
-            <h3>${experienceLabel}</h3>
-            <p>${doctor.experience} ${yearsPracticeLabel}</p>
-          </div>
-          <div class="modal-section">
-            <h3>${aboutLabel}</h3>
-            <p>${doctor.bio}</p>
-          </div>
-          <div class="modal-section">
-            <h3>${servicesLabel}</h3>
-            <ul class="services-list">
-              ${doctor.services.map(service => `<li>${service}</li>`).join('')}
-            </ul>
+
+          <div class="modal-content-sections">
+            <div class="modal-info-card">
+              <div class="modal-card-header">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                </svg>
+                <h3>${educationLabel}</h3>
+              </div>
+              <p>${doctor.education}</p>
+            </div>
+
+            <div class="modal-info-card">
+              <div class="modal-card-header">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                <h3>${aboutLabel}</h3>
+              </div>
+              <p>${doctor.bio}</p>
+            </div>
+
+            <div class="modal-info-card">
+              <div class="modal-card-header">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <h3>${servicesLabel}</h3>
+              </div>
+              <ul class="modal-services-list">
+                ${doctor.services.map(service => `<li><span class="service-check">✓</span>${service}</li>`).join('')}
+              </ul>
+            </div>
           </div>
         `;
 
@@ -678,20 +723,35 @@ const clinics = [
   .modal-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .modal-content {
     position: relative;
     background: var(--bg-primary);
-    border-radius: var(--radius-xl);
-    max-width: 600px;
+    border-radius: 24px;
+    max-width: 700px;
     width: 100%;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: modalSlideIn 0.3s ease-out;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .modal-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .modal-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   @keyframes modalSlideIn {
@@ -707,12 +767,13 @@ const clinics = [
 
   .modal-close {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -720,76 +781,285 @@ const clinics = [
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
+    color: white;
   }
 
   .modal-close:hover {
-    background: var(--bg-gray);
-    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .modal-body {
-    padding: 40px;
+    padding: 0;
   }
 
-  .modal-body h2 {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 8px;
+  /* Modal Header with Image */
+  .modal-header-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 50px 45px;
+    background: linear-gradient(135deg, #1954B3 0%, #2563EB 100%);
+    overflow: hidden;
+  }
+
+  .modal-header-visual::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.1); }
+  }
+
+  .modal-doctor-image {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 15px rgba(255, 255, 255, 0.05);
+    animation: imageFloat 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes imageFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .modal-doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-verified-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .modal-header-info {
+    flex: 1;
+    z-index: 2;
+  }
+
+  .modal-header-info h2 {
+    font-size: 36px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 14px;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: -0.5px;
   }
 
   .modal-specialty {
-    font-size: 16px;
-    color: var(--primary);
-    font-weight: 600;
-    margin-bottom: 24px;
-  }
-
-  .modal-section {
-    margin-bottom: 24px;
-  }
-
-  .modal-section h3 {
     font-size: 18px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .modal-section p {
+  .modal-specialty svg {
+    opacity: 0.9;
+  }
+
+  .modal-experience-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
     font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.6;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 
-  .services-list {
+  /* Modal Content Sections */
+  .modal-content-sections {
+    padding: 40px 45px 45px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--bg-primary);
+    max-height: calc(85vh - 200px);
+    overflow-y: auto;
+  }
+
+  .modal-content-sections::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-content-sections::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+  }
+
+  .modal-content-sections::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+  }
+
+  .modal-info-card {
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .modal-info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, #2563EB 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .modal-info-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 30px rgba(25, 84, 179, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .modal-info-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .modal-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .modal-card-header svg {
+    color: var(--primary);
+    flex-shrink: 0;
+    background: rgba(25, 84, 179, 0.1);
+    padding: 8px;
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-card-header h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  .modal-info-card p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* Services List in Modal */
+  .modal-services-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
-  .services-list li {
-    font-size: 14px;
-    color: var(--text-secondary);
+  .modal-services-list li {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
   }
 
-  .services-list li::before {
-    content: '✓';
+  .modal-services-list li::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(25, 84, 179, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-services-list li:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(25, 84, 179, 0.15);
+    transform: translateX(4px);
+  }
+
+  .modal-services-list li:hover::after {
+    opacity: 1;
+  }
+
+  .service-check {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    background: var(--bg-secondary);
-    color: var(--primary);
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary) 0%, #2563EB 100%);
+    color: white;
     border-radius: 50%;
-    font-weight: 700;
-    font-size: 12px;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(25, 84, 179, 0.3);
+    z-index: 1;
   }
 
   @media (max-width: 968px) {
@@ -824,12 +1094,61 @@ const clinics = [
       font-size: 18px;
     }
 
-    .modal-body {
-      padding: 30px 24px;
+    .modal-header-visual {
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 24px;
     }
 
-    .services-list {
+    .modal-doctor-image {
+      width: 140px;
+      height: 140px;
+    }
+
+    .modal-header-info h2 {
+      font-size: 28px;
+    }
+
+    .modal-specialty {
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .modal-experience-badge {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .modal-content-sections {
+      padding: 28px 20px 32px;
+    }
+
+    .modal-info-card {
+      padding: 22px;
+    }
+
+    .modal-card-header {
+      gap: 12px;
+    }
+
+    .modal-card-header svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .modal-card-header h3 {
+      font-size: 19px;
+    }
+
+    .modal-services-list {
       grid-template-columns: 1fr;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      top: 16px;
+      right: 16px;
     }
 
     .section-header-center .section-title {
