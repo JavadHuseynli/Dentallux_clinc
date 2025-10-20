@@ -6,7 +6,7 @@
   --primary: #1954B3;
   --primary-hover: #154a9a;
 
-  /* Neutral Colors */
+  /* Light Mode Colors */
   --text-primary: #1F2937;
   --text-secondary: #6B7280;
   --text-light: #9CA3AF;
@@ -32,6 +32,31 @@
   --radius-full: 9999px;
 }
 
+/* Dark Mode Theme */
+.dark-mode {
+  /* Primary stays the same but slightly brighter for dark mode */
+  --primary: #2563EB;
+  --primary-hover: #1d4ed8;
+
+  /* Dark Mode Colors */
+  --text-primary: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --text-light: #9CA3AF;
+  --bg-primary: #111827;
+  --bg-secondary: #1F2937;
+  --bg-gray: #374151;
+  --border: #374151;
+
+  /* Footer in Dark Mode */
+  --footer-bg: #0F172A;
+
+  /* Shadows for Dark Mode */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
 /* Base Styles */
 * {
   margin: 0;
@@ -46,6 +71,12 @@ body {
   background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for dark mode - exclude transform and animation */
+*:not(.animate-on-scroll):not([class*="animate-"]):not([class*="slide-"]):not([class*="fab-"]) {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
 }
 
 html {

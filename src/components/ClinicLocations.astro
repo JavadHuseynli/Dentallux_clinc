@@ -382,7 +382,7 @@ const clinics = [
 
 <style>
   .clinic-locations-section {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   }
 
   .section-header-center {
@@ -393,7 +393,7 @@ const clinics = [
 
   .section-badge {
     display: inline-block;
-    background: #EFF6FF;
+    background: var(--bg-secondary);
     color: var(--primary);
     padding: 8px 20px;
     border-radius: var(--radius-full);
@@ -430,7 +430,7 @@ const clinics = [
 
   .clinic-option {
     position: relative;
-    background: white;
+    background: var(--bg-primary);
     border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 28px 24px;
@@ -449,14 +449,14 @@ const clinics = [
 
   .clinic-option.active {
     border-color: var(--primary);
-    background: #EFF6FF;
+    background: var(--bg-secondary);
     box-shadow: 0 0 0 4px rgba(25, 84, 179, 0.1);
   }
 
   .clinic-icon {
     width: 56px;
     height: 56px;
-    background: #EFF6FF;
+    background: var(--bg-secondary);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
@@ -552,7 +552,7 @@ const clinics = [
   }
 
   .doctor-card {
-    background: white;
+    background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -567,7 +567,7 @@ const clinics = [
   .doctor-image {
     position: relative;
     aspect-ratio: 1;
-    background: #F3F4F6;
+    background: var(--bg-gray);
   }
 
   .doctor-badge {
@@ -618,7 +618,7 @@ const clinics = [
 
   .btn-learn-more {
     flex: 1;
-    background: white;
+    background: var(--bg-primary);
     color: var(--primary);
     border: 2px solid var(--primary);
     padding: 10px 16px;
@@ -684,7 +684,7 @@ const clinics = [
 
   .modal-content {
     position: relative;
-    background: white;
+    background: var(--bg-primary);
     border-radius: var(--radius-xl);
     max-width: 600px;
     width: 100%;
@@ -711,7 +711,7 @@ const clinics = [
     right: 16px;
     width: 40px;
     height: 40px;
-    background: white;
+    background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 50%;
     display: flex;
@@ -785,7 +785,7 @@ const clinics = [
     justify-content: center;
     width: 20px;
     height: 20px;
-    background: #EFF6FF;
+    background: var(--bg-secondary);
     color: var(--primary);
     border-radius: 50%;
     font-weight: 700;

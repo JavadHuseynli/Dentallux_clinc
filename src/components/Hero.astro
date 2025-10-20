@@ -99,7 +99,7 @@
 <style>
   .hero-section {
     padding: 140px 0 80px;
-    background: linear-gradient(180deg, #F9FAFB 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     position: relative;
     overflow: hidden;
   }
@@ -113,7 +113,7 @@
 
   .hero-badge {
     display: inline-block;
-    background: white;
+    background: var(--bg-primary);
     border: 1px solid var(--primary);
     color: var(--primary);
     padding: 8px 20px;
@@ -169,7 +169,7 @@
   }
 
   .btn-secondary {
-    background: white;
+    background: var(--bg-primary);
     color: var(--text-primary);
     padding: 14px 28px;
     border-radius: var(--radius-md);
@@ -327,23 +327,23 @@
       opacity: 0;
     }
     5% {
-      transform: translateY(0);
+      transform: translateY(-20%);
       opacity: 1;
     }
     20% {
-      transform: translateY(10%);
+      transform: translateY(50%);
       opacity: 1;
     }
     23% {
-      transform: translateY(15%);
+      transform: translateY(60%);
       opacity: 0.8;
     }
     25% {
-      transform: translateY(120%);
+      transform: translateY(150%);
       opacity: 0;
     }
     100% {
-      transform: translateY(120%);
+      transform: translateY(150%);
       opacity: 0;
     }
   }
@@ -372,7 +372,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: white;
+    background: var(--bg-primary);
     border: 2px solid var(--primary);
     margin-left: -8px;
   }
