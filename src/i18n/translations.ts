@@ -42,6 +42,12 @@ export const translations = {
     clinic_modal_about: "Haqqında",
     clinic_modal_services: "Xidmətlər",
     clinic_modal_years_practice: "peşəkar fəaliyyət ili",
+    clinic_modal_schedule: "İş Cədvəli",
+    clinic_modal_location: "Filial",
+    clinic_schedule_weekdays: "Həftə içi",
+    clinic_schedule_everyday: "Hər gün",
+    clinic_schedule_closed_sunday: "Bazar günü bağlı",
+    clinic_schedule_lunch: "Nahar fasiləsi: 13:00 - 14:00",
 
     // Services
     services_badge: "XİDMƏTLƏR",
@@ -274,6 +280,12 @@ export const translations = {
     clinic_modal_about: "About",
     clinic_modal_services: "Services",
     clinic_modal_years_practice: "years of professional practice",
+    clinic_modal_schedule: "Work Schedule",
+    clinic_modal_location: "Branch",
+    clinic_schedule_weekdays: "Weekdays",
+    clinic_schedule_everyday: "Every day",
+    clinic_schedule_closed_sunday: "Closed on Sunday",
+    clinic_schedule_lunch: "Lunch break: 13:00 - 14:00",
 
     // Services
     services_badge: "SERVICES",
@@ -506,6 +518,12 @@ export const translations = {
     clinic_modal_about: "О враче",
     clinic_modal_services: "Услуги",
     clinic_modal_years_practice: "лет профессиональной практики",
+    clinic_modal_schedule: "График работы",
+    clinic_modal_location: "Филиал",
+    clinic_schedule_weekdays: "Будни",
+    clinic_schedule_everyday: "Каждый день",
+    clinic_schedule_closed_sunday: "Закрыто в воскресенье",
+    clinic_schedule_lunch: "Обеденный перерыв: 13:00 - 14:00",
 
     // Services
     services_badge: "УСЛУГИ",
