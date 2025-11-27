@@ -1,22 +1,5 @@
 ---
 // Appointment Booking Component
-const services = [
-  "General Checkup",
-  "Teeth Cleaning",
-  "Teeth Whitening",
-  "Dental Implants",
-  "Root Canal",
-  "Orthodontics",
-  "Emergency Care",
-  "Cosmetic Dentistry"
-];
-
-const dentists = [
-  "Dr. Sarah Johnson",
-  "Dr. Michael Chen",
-  "Dr. Emily Martinez",
-  "Dr. David Williams"
-];
 ---
 <section id="appointment" class="appointment-section section-padding">
   <div class="container-custom">
@@ -44,28 +27,6 @@ const dentists = [
           <div class="form-group">
             <label for="apt-phone" data-i18n="appointment_phone">Telefon</label>
             <input type="tel" id="apt-phone" name="phone" data-i18n-placeholder="contact_phone_placeholder" placeholder="(555) 123-4567" required />
-          </div>
-        </div>
-
-        <div class="form-row-2">
-          <div class="form-group">
-            <label for="apt-service" data-i18n="appointment_service">Xidmət Seçin</label>
-            <select id="apt-service" name="service" required>
-              <option value="" data-i18n="appointment_service_select">Xidmət seçin</option>
-              {services.map(service => (
-                <option value={service}>{service}</option>
-              ))}
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="apt-dentist" data-i18n="appointment_dentist">Həkim Seçimi</label>
-            <select id="apt-dentist" name="dentist">
-              <option value="" data-i18n="appointment_dentist_no_preference">Fərq etməz</option>
-              {dentists.map(dentist => (
-                <option value={dentist}>{dentist}</option>
-              ))}
-            </select>
           </div>
         </div>
 
