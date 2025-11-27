@@ -1,0 +1,582 @@
+---
+// Services Component - Enhanced with Learn More functionality
+const services = [
+  {
+    id: "implants",
+    icon: "implant",
+    image: "/images/services/dental-implants.jpg"
+  },
+  {
+    id: "pediatric",
+    icon: "child",
+    image: "/images/services/pediatric-dentistry.jpg"
+  },
+  {
+    id: "endodontics",
+    icon: "endo",
+    image: "/images/services/endodontics.jpg"
+  },
+  {
+    id: "cosmetic",
+    icon: "cosmetic",
+    image: "/images/services/cosmetic-dentistry.jpg"
+  },
+  {
+    id: "orthodontics",
+    icon: "ortho",
+    image: "/images/services/orthodontics.jpg"
+  },
+  {
+    id: "restorative",
+    icon: "restore",
+    image: "/images/services/restorative-dentistry.jpg"
+  }
+];
+---
+
+<section id="services" class="services-section section-padding">
+  <div class="container-custom">
+    <div class="section-header">
+      <div>
+        <span class="section-badge" data-i18n="services_badge">XİDMƏTLƏR</span>
+        <h2 class="section-title" data-i18n="services_title">Diş Xidmətlərimiz</h2>
+        <p class="section-subtitle" data-i18n="services_subtitle">Ümumi Diş və Kosmetik Diş Yardımından Təcili Yardım və İmplantlara Qədər</p>
+      </div>
+      <a href="#appointment" class="btn-make-appointment">
+        <span data-i18n="services_make_appointment">Randevu Təyin Et</span>
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="services-grid">
+      {services.map((service) => (
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="40" height="40" fill="var(--primary)" viewBox="0 0 20 20">
+              <path d="M10 3.5C6.5 3.5 4 6 4 9.5C4 13 6.5 15.5 10 15.5C13.5 15.5 16 13 16 9.5C16 6 13.5 3.5 10 3.5Z"/>
+            </svg>
+          </div>
+          <h3 data-i18n={`service_${service.id}_title`}>Service Title</h3>
+          <p data-i18n={`service_${service.id}_desc`}>Service description...</p>
+          <div class="service-image">
+            <img
+              src={service.image}
+              alt=""
+              loading="lazy"
+            />
+          </div>
+          <div class="service-actions">
+            <button class="btn-learn-more" data-service-id={service.id}>
+              <span data-i18n="services_learn_more">Daha Ətraflı</span>
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <a href="#appointment" class="btn-book-service">
+              <span data-i18n="services_book_now">İndi Sifariş Et</span>
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Service Details Modal -->
+<div class="service-modal" id="serviceModal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close" id="closeServiceModal">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+
+    <div class="modal-body" id="serviceModalBody">
+      <!-- Content will be populated by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Get current language and translations
+  const getCurrentLanguage = () => localStorage.getItem('language') || 'az';
+  const getTranslations = () => (window as any).__translations__ || {};
+
+  const getServiceData = (serviceId: string, lang: string) => {
+    const translations = getTranslations();
+    const t = translations[lang] || translations.az;
+
+    return {
+      title: t[`service_${serviceId}_title`],
+      fullDescription: t[`service_${serviceId}_full`],
+      treatments: [
+        t[`service_${serviceId}_treatment_1`],
+        t[`service_${serviceId}_treatment_2`],
+        t[`service_${serviceId}_treatment_3`],
+        t[`service_${serviceId}_treatment_4`],
+        t[`service_${serviceId}_treatment_5`],
+        t[`service_${serviceId}_treatment_6`]
+      ],
+      benefits: t[`service_${serviceId}_benefits`]
+    };
+  };
+
+  const modal = document.getElementById('serviceModal');
+  const modalBody = document.getElementById('serviceModalBody');
+  const closeModal = document.getElementById('closeServiceModal');
+  const learnMoreButtons = document.querySelectorAll('.btn-learn-more');
+
+  learnMoreButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const serviceId = button.dataset.serviceId;
+      if (!serviceId) return;
+
+      const lang = getCurrentLanguage();
+      const translations = getTranslations();
+      const t = translations[lang] || translations.az;
+      const service = getServiceData(serviceId, lang);
+
+      if (service) {
+        modalBody.innerHTML = `
+          <h2>${service.title}</h2>
+          <div class="modal-section">
+            <h3>${t.services_modal_overview || 'Overview'}</h3>
+            <p>${service.fullDescription}</p>
+          </div>
+          <div class="modal-section">
+            <h3>${t.services_modal_treatments || 'Treatments & Procedures'}</h3>
+            <ul class="treatments-list">
+              ${service.treatments.map(treatment => `<li>${treatment}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="modal-section">
+            <h3>${t.services_modal_benefits || 'Benefits'}</h3>
+            <p>${service.benefits}</p>
+          </div>
+          <div class="modal-cta">
+            <a href="#appointment" class="btn-modal-appointment">
+              ${t.services_modal_book_appointment || 'Book an Appointment'}
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="#contact" class="btn-modal-contact">${t.services_modal_contact || 'Contact Us'}</a>
+          </div>
+        `;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  closeModal?.addEventListener('click', () => {
+    modal?.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  modal?.querySelector('.modal-overlay')?.addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+</script>
+
+<style>
+  .services-section {
+    background: var(--bg-primary);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: var(--bg-secondary);
+    color: var(--primary);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+
+  .btn-make-appointment {
+    background: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-make-appointment:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 84, 179, 0.3);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .service-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .service-card > p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .service-image {
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 200px;
+  }
+
+  .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .service-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-learn-more {
+    flex: 1;
+    background: var(--bg-primary);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-learn-more:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-book-service {
+    flex: 1;
+    background: var(--primary);
+    color: white;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-book-service:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Service Modal */
+  .service-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .service-modal.active {
+    display: flex;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .modal-close {
+    position: sticky;
+    top: 16px;
+    left: calc(100% - 56px);
+    width: 40px;
+    height: 40px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin: 16px 16px 0 auto;
+  }
+
+  .modal-close:hover {
+    background: var(--bg-gray);
+    transform: scale(1.1);
+  }
+
+  .modal-body {
+    padding: 0 40px 40px;
+  }
+
+  .modal-body h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  .modal-section {
+    margin-bottom: 28px;
+  }
+
+  .modal-section h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .modal-section p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .treatments-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .treatments-list li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.5;
+  }
+
+  .treatments-list li::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-secondary);
+    color: var(--primary);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .modal-cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn-modal-appointment {
+    flex: 1;
+    background: var(--primary);
+    color: white;
+    padding: 14px 24px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-modal-appointment:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-modal-contact {
+    flex: 1;
+    background: var(--bg-primary);
+    color: var(--primary);
+    padding: 14px 24px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+  }
+
+  .btn-modal-contact:hover {
+    background: var(--bg-gray);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 968px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .section-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .modal-body {
+      padding: 0 30px 30px;
+    }
+
+    .treatments-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 30px;
+    }
+
+    .service-actions {
+      flex-direction: column;
+    }
+
+    .btn-learn-more,
+    .btn-book-service {
+      width: 100%;
+    }
+
+    .modal-body {
+      padding: 0 24px 24px;
+    }
+
+    .modal-body h2 {
+      font-size: 26px;
+    }
+
+    .modal-cta {
+      flex-direction: column;
+    }
+  }
+</style>

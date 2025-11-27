@@ -1,0 +1,283 @@
+---
+// Partners Slideshow Section
+const partners = [
+  { name: "Medical ACADEMY GROUP", logo: "/images/partners/logo.jpg", urls: "https://medicalacademygroup.com" },
+  { name: "Dentalux Academy MMC", logo: "/images/partners/partner-1.png", urls: "https://dentaluxacademy.com" },
+];
+---
+
+<section class="partners-section">
+  <div class="container-custom">
+    <div class="section-header-center">
+      <span class="section-badge" data-i18n="partners_badge">TƏRƏFDAŞLAR</span>
+      <h2 class="section-title" data-i18n="partners_title">Etibarlı Tərəfdaşlarımız</h2>
+      <p class="section-subtitle" data-i18n="partners_subtitle">
+        Aparıcı diş brendləri və təşkilatları ilə əməkdaşlıq
+      </p>
+    </div>
+
+    <div class="partners-slider-wrapper">
+      <div class="partners-slider">
+        <div class="partners-track">
+          {partners.map((partner) => (
+            <div class="partner-card">
+              <div class="partner-logo">
+                <img src={partner.logo} alt={partner.name} loading="lazy" />
+              </div>
+              {partner.urls ? (
+                <a href={partner.urls} target="_blank" rel="noopener noreferrer" class="partner-link">
+                  <h4>{partner.name}</h4>
+                </a>
+              ) : (
+                <h4>{partner.name}</h4>
+              )}
+            </div>
+          ))}
+          <!-- Duplicate for seamless loop -->
+          {partners.map((partner) => (
+            <div class="partner-card">
+              <div class="partner-logo">
+                <img src={partner.logo} alt={partner.name} loading="lazy" />
+              </div>
+              {partner.urls ? (
+                <a href={partner.urls} target="_blank" rel="noopener noreferrer" class="partner-link">
+                  <h4>{partner.name}</h4>
+                </a>
+              ) : (
+                <h4>{partner.name}</h4>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Auto-play slideshow
+  const track = document.querySelector('.partners-track');
+
+  // Pause on hover
+  track?.addEventListener('mouseenter', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  track?.addEventListener('mouseleave', () => {
+    track.style.animationPlayState = 'running';
+  });
+</script>
+
+<style>
+  .partners-section {
+    padding: 60px 0;
+    background: var(--bg-primary);
+    overflow: hidden;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .partners-slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .partners-slider {
+    overflow: hidden;
+    padding: 20px 0;
+    position: relative;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .partners-track {
+    display: flex;
+    gap: 40px;
+    animation: scroll 20s linear infinite;
+    width: fit-content;
+  }
+
+  .partner-card {
+    flex-shrink: 0;
+    width: 200px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary);
+  }
+
+  .partner-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--bg-secondary);
+    padding: 15px;
+  }
+
+  .partner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .partner-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .partner-link {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .partner-link:hover h4 {
+    color: var(--primary);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* 2 partners: (200px card + 40px gap) × 2 */
+      transform: translateX(calc((200px + 40px) * -2));
+    }
+  }
+
+  @media (max-width: 968px) {
+    .section-title {
+      font-size: 30px;
+    }
+
+    .partners-track {
+      gap: 30px;
+    }
+
+    .partner-card {
+      width: 180px;
+      padding: 24px 16px;
+    }
+
+    .partner-logo {
+      width: 100px;
+      height: 100px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* 2 partners: (180px card + 30px gap) × 2 */
+        transform: translateX(calc((180px + 30px) * -2));
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .partners-section {
+      padding: 40px 0;
+    }
+
+    .section-header-center {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 26px;
+    }
+
+    .partner-card {
+      width: 160px;
+      padding: 20px 12px;
+    }
+
+    .partner-logo {
+      width: 90px;
+      height: 90px;
+    }
+
+    .partners-slider {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 5%,
+        black 95%,
+        transparent
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 5%,
+        black 95%,
+        transparent
+      );
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* 2 partners: (160px card + 30px gap) × 2 */
+        transform: translateX(calc((160px + 30px) * -2));
+      }
+    }
+  }
+
+  /* Pause animation on reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .partners-track {
+      animation: none;
+    }
+  }
+</style>

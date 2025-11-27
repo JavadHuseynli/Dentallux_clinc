@@ -1,0 +1,388 @@
+---
+// Appointment Booking Component
+const services = [
+  "General Checkup",
+  "Teeth Cleaning",
+  "Teeth Whitening",
+  "Dental Implants",
+  "Root Canal",
+  "Orthodontics",
+  "Emergency Care",
+  "Cosmetic Dentistry"
+];
+
+const dentists = [
+  "Dr. Sarah Johnson",
+  "Dr. Michael Chen",
+  "Dr. Emily Martinez",
+  "Dr. David Williams"
+];
+---
+<section id="appointment" class="appointment-section section-padding">
+  <div class="container-custom">
+    <div class="section-header-center">
+      <span class="section-badge" data-i18n="appointment_badge">RANDEVU</span>
+      <h2 class="section-title" data-i18n="appointment_title">Randevu Təyin Et</h2>
+      <p class="section-subtitle" data-i18n="appointment_subtitle">
+        Sizə Uyğun Olan Vaxtı Seçin
+      </p>
+    </div>
+
+    <div class="appointment-form-wrapper">
+      <form class="appointment-form">
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="apt-name" data-i18n="appointment_name">Ad Soyad</label>
+            <input type="text" id="apt-name" name="name" data-i18n-placeholder="contact_name_placeholder" placeholder="Adınız" required />
+          </div>
+
+          <div class="form-group">
+            <label for="apt-email" data-i18n="appointment_email">Email</label>
+            <input type="email" id="apt-email" name="email" data-i18n-placeholder="contact_email_placeholder" placeholder="email@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="apt-phone" data-i18n="appointment_phone">Telefon</label>
+            <input type="tel" id="apt-phone" name="phone" data-i18n-placeholder="contact_phone_placeholder" placeholder="(555) 123-4567" required />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="apt-service" data-i18n="appointment_service">Xidmət Seçin</label>
+            <select id="apt-service" name="service" required>
+              <option value="" data-i18n="appointment_service_select">Xidmət seçin</option>
+              {services.map(service => (
+                <option value={service}>{service}</option>
+              ))}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="apt-dentist" data-i18n="appointment_dentist">Həkim Seçimi</label>
+            <select id="apt-dentist" name="dentist">
+              <option value="" data-i18n="appointment_dentist_no_preference">Fərq etməz</option>
+              {dentists.map(dentist => (
+                <option value={dentist}>{dentist}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="apt-date" data-i18n="appointment_date">Tarix</label>
+            <input type="date" id="apt-date" name="date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="apt-time" data-i18n="appointment_time">Vaxt</label>
+            <select id="apt-time" name="time" required>
+              <option value="" data-i18n="appointment_time_select">Vaxt seçin</option>
+              <option value="08:00">08:00 AM</option>
+              <option value="09:00">09:00 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="13:00">01:00 PM</option>
+              <option value="14:00">02:00 PM</option>
+              <option value="15:00">03:00 PM</option>
+              <option value="16:00">04:00 PM</option>
+              <option value="17:00">05:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apt-notes" data-i18n="appointment_notes">Əlavə Qeydlər</label>
+          <textarea id="apt-notes" name="notes" rows="4" data-i18n-placeholder="appointment_notes_placeholder" placeholder="Xüsusi tələbləriniz varsa bizə bildirin..."></textarea>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="apt-terms" name="terms" required />
+          <label for="apt-terms">
+            <a href="#terms" data-i18n="footer_terms">Xidmət Şərtləri</a> və <a href="#privacy" data-i18n="footer_privacy">Məxfilik Siyasəti</a> ilə razıyam
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit-appointment">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          <span data-i18n="appointment_submit">Təsdiq Et</span>
+        </button>
+      </form>
+
+      <!-- Info Cards -->
+      <div class="appointment-info">
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h4>Quick Confirmation</h4>
+          <p>Receive appointment confirmation within 2 hours</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            </svg>
+          </div>
+          <h4>Reminder Calls</h4>
+          <p>We'll remind you 24 hours before your visit</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h4>Expert Care</h4>
+          <p>Experienced dentists with 15+ years practice</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .appointment-section {
+    background: var(--bg-primary);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: var(--bg-secondary);
+    color: var(--primary);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .section-header-center .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .section-header-center .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .appointment-form-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .appointment-form {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 40px;
+  }
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-row-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--bg-primary);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(25, 84, 179, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-group select {
+    cursor: pointer;
+  }
+
+  .form-checkbox {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .form-checkbox input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .form-checkbox label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .form-checkbox label a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .form-checkbox label a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-submit-appointment {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    padding: 16px 32px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-submit-appointment:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(25, 84, 179, 0.3);
+  }
+
+  .appointment-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .info-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .info-card-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin: 0 auto 16px;
+  }
+
+  .info-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .info-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 968px) {
+    .form-row-3 {
+      grid-template-columns: 1fr;
+    }
+
+    .appointment-form {
+      padding: 32px;
+    }
+
+    .appointment-info {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header-center .section-title {
+      font-size: 34px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form-row-2 {
+      grid-template-columns: 1fr;
+    }
+
+    .appointment-form {
+      padding: 24px;
+    }
+
+    .section-header-center .section-title {
+      font-size: 30px;
+    }
+  }
+</style>

@@ -1,0 +1,1533 @@
+---
+import { Image } from 'astro:assets';
+
+// Clinic Locations Selector Component
+const clinics = [
+  {
+    id: "hazi-aslanov",
+    name: "Həzi Aslanov Filialı",
+    address:  "Xətai rayonu, İlqar Zülfüqarov küçəsi 161, Bakı, Azərbaycan",
+    phone: "994503263223",
+    whatsapp: "994503263223",
+    doctors: [
+      {
+        id: 8,
+        name: "Dr. İsgəndər Manafov",
+        specialty: "Direktor",
+        experience: "15+",
+        image: "/images/doctors/isgenderdoc.jpg",
+        whatsapp: "994503263223",
+        branch: "hazi-aslanov"
+      },
+      {
+        id: 1,
+        name: "Dr. Aytən Zamanova",
+        specialty: "Baş həkim",
+        experience: "8+",
+        image: "/images/doctors/drayten.png",
+        whatsapp: "994503263223",
+        branch: "hazi-aslanov"
+      },
+      {
+        id: 2,
+        name: "Dr. Nurlan Cavadzadə",
+        specialty: "Ortoped Stomatoloq",
+        experience: "8+",
+        image: "/images/doctors/javadzadeh.jpg",
+        whatsapp: "994503263223",
+        branch: "hazi-aslanov"
+      },
+      {
+        id: 4,
+        name: "Dr. Ayşən Abbaslı",
+        specialty: "Pedodont, Ortodont",
+        experience: "10+",
+        image: "/images/doctors/dr_aysen.jpg",
+        whatsapp: "994503263223",
+        branch: "hazi-aslanov"
+      }
+    ]
+  },
+  {
+    id: "ganjlik",
+    name: "Gənclik Filialı",
+    address:"Ayna Sultanova küçəsi, Şəmsi Rəhimov 55c, Bakı, Azərbaycan" ,
+    phone: "994503263223",
+    whatsapp: "994503263223",
+    doctors: [
+      {
+        id: 8,
+        name: "Dr. İsgəndər Manafov",
+        specialty: "Direktor",
+        experience: "15+",
+        image: "/images/doctors/isgenderdoc.jpg",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      },
+      {
+        id: 1,
+        name: "Dr. Aytən Zamanova",
+        specialty: "Baş həkim",
+        experience: "8+",
+        image: "/images/doctors/drayten.png",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      },
+      {
+        id: 4,
+        name: "Dr. Ayşən Abbaslı",
+        specialty: "Pedodont, Ortodont",
+        experience: "10+",
+        image: "/images/doctors/dr_aysen.jpg",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      },
+      {
+        id: 2,
+        name: "Dr. Nurlan Cavadzadə",
+        specialty: "Ortoped Stomatoloq",
+        experience: "8+",
+        image: "/images/doctors/javadzadeh.jpg",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      },
+      {
+        id: 5,
+        name: "Dr. Emin Nağıyev",
+        specialty: "Ortoped Stomatoloq",
+        experience: "10+",
+        image: "/images/doctors/nagiyev_emil.jpeg",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      },
+      {
+        id: 6,
+        name: "Dr. Zülfüqar Baxşılı",
+        specialty: "Endodont",
+        experience: "12+",
+        image: "/images/doctors/placeholder.jpg",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      },
+      {
+        id: 7,
+        name: "Dr. Aysu İsmayılova",
+        specialty: "Endodont",
+        experience: "8+",
+        image: "/images/doctors/aysu.jpg",
+        whatsapp: "994503263223",
+        branch: "ganjlik"
+      }
+    ]
+  }
+];
+---
+
+<section id="clinics" class="clinic-locations-section section-padding">
+  <div class="container-custom">
+    <div class="section-header-center">
+      <span class="section-badge" data-i18n="clinic_badge">FİLİALLARIMIZ</span>
+      <h2 class="section-title" data-i18n="clinic_title">Klinika Məkanınızı Seçin</h2>
+      <p class="section-subtitle" data-i18n="clinic_subtitle">
+        Sizə Ən Yaxın Filialımızı Tapın
+      </p>
+    </div>
+
+    <!-- Clinic Selector -->
+    <div class="clinic-selector">
+      {clinics.map((clinic, index) => (
+        <button
+          class="clinic-option"
+          data-clinic={clinic.id}
+        >
+          <div class="clinic-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="clinic-info">
+            <h3>{clinic.name}</h3>
+            <p>{clinic.address}</p>
+          </div>
+          <div class="clinic-check">
+          
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <!-- Doctors Grid for Each Clinic -->
+    {clinics.map((clinic, index) => (
+      <div
+        class="doctors-grid"
+        data-clinic-doctors={clinic.id}
+        style="display: none;"
+      >
+        <div class="doctors-header">
+          <h3 class="clinic-title"><span data-i18n="clinic_doctors_meet">Həkimlərimizlə Tanış Olun</span> {clinic.name}</h3>
+          <button class="btn-collapse-doctors" data-collapse-btn={clinic.id}>
+            <span data-i18n="clinic_btn_collapse">Yığ</span>
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="doctors-cards" data-doctors-list={clinic.id}>
+          {clinic.doctors.map((doctor) => (
+            <div class="doctor-card">
+              <div class="doctor-image">
+                {doctor.image.endsWith('.mp4') || doctor.image.endsWith('.webm') ? (
+                  <video src={doctor.image} class="card-doctor-img" autoplay loop muted playsinline />
+                ) : (
+                  <Image src={doctor.image} alt={doctor.name} width={400} height={400} class="card-doctor-img" />
+                )}
+
+                <div class="doctor-badge">
+                  <svg width="20" height="20" fill="white" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="doctor-details">
+                <h4>{doctor.name}</h4>
+                <p class="doctor-specialty">{doctor.specialty}</p>
+                <p class="doctor-experience">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                  </svg>
+                  {doctor.experience} <span data-i18n="clinic_experience_label">Təcrübə</span>
+                </p>
+
+                <div class="doctor-actions">
+                  <button class="btn-learn-more" data-doctor-id={doctor.id}>
+                    <span data-i18n="clinic_btn_learn_more">Daha Ətraflı</span>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                    </svg>
+                  </button>
+
+                  <a
+                    href={`https://wa.me/${doctor.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-whatsapp-book"
+                    data-doctor-name={doctor.name}
+                    data-clinic-name={clinic.name}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    <span data-i18n="clinic_btn_book">Qəbul</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- Doctor Info Modal -->
+<div class="doctor-modal" id="doctorModal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+
+    <div class="modal-body" id="modalBody">
+      <!-- Content will be populated by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Get current language and translations
+  const getCurrentLanguage = () => localStorage.getItem('language') || 'az';
+  const getTranslations = () => (window as any).__translations__ || {};
+
+  // Clinic selector functionality
+  const clinicOptions = document.querySelectorAll('.clinic-option');
+  const doctorsGrids = document.querySelectorAll('[data-clinic-doctors]');
+
+  clinicOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const clinicId = option.dataset.clinic;
+
+      // Update active clinic
+      clinicOptions.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+
+      // Show corresponding doctors
+      doctorsGrids.forEach(grid => {
+        if (grid.dataset.clinicDoctors === clinicId) {
+          grid.style.display = 'block';
+        } else {
+          grid.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Update WhatsApp links with translated message
+  const updateWhatsAppLinks = () => {
+    const lang = getCurrentLanguage();
+    const translations = getTranslations();
+    const whatsappMessage = translations[lang]?.clinic_whatsapp_message || 'Hi, I would like to book an appointment with you';
+
+    document.querySelectorAll('.btn-whatsapp-book').forEach(btn => {
+      const doctorName = btn.getAttribute('data-doctor-name');
+      const clinicName = btn.getAttribute('data-clinic-name');
+      const whatsappNumber = btn.getAttribute('href')?.replace('https://wa.me/', '');
+
+      if (whatsappNumber && doctorName && clinicName) {
+        const message = `${whatsappMessage} - ${doctorName} (${clinicName})`;
+        btn.setAttribute('href', `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
+      }
+    });
+  };
+
+  // Call on load and on language change
+  updateWhatsAppLinks();
+  window.addEventListener('languageChanged', updateWhatsAppLinks);
+
+  // Doctor modal functionality
+  const doctorData = {
+    8: {
+      name: "Dr. İsgəndər Manafov",
+      specialty: "Direktor",
+      specialtyFull: "Clinic Director",
+      experience: "15+",
+      image: "/images/doctors/isgenderdoc.jpg",
+      education: "Azerbaijan Medical University, Health Management & Administration",
+      bio: "Dr. İsgəndər Manafov is the Director of Dentallux Clinic, overseeing all operations to ensure the highest quality of patient care and service excellence. With over 15 years of experience in healthcare management, he leads the clinic with a vision of modern, patient-centered dentistry.",
+      expertise: ["Clinic Management", "Healthcare Administration", "Strategic Planning", "Patient Relations"],
+      services: ["Clinic Administration", "Patient Consultation", "Treatment Coordination", "Quality Assurance"],
+      branch: "Həzi Aslanov & Gənclik",
+      schedule: {
+        days: "Monday - Saturday",
+        hours: "09:00 - 18:00",
+        note: "Available by appointment for consultations"
+      }
+    },
+    1: {
+      name: "Dr. Aytən Zamanova",
+      specialty: "Baş həkim",
+      specialtyFull: "Chief Doctor & General Dentistry Specialist",
+      experience: "8+",
+      image: "/videos/ayten.mp4",
+      education: "Azerbaijan Medical University, Dentistry & Clinic Management Specialist",
+      bio: "Dr. Aytən Zamanova is the Chief Doctor with over 8 years of extensive experience in general dentistry and clinic management. She ensures the highest standards of patient care across all treatments, leading our team with expertise and dedication to excellence in dental healthcare.",
+      expertise: ["Clinic Management & Leadership", "General Dentistry", "Treatment Planning & Coordination", "Patient Care Standards"],
+      services: ["Comprehensive Dental Checkups", "Teeth Cleaning & Hygiene", "Restorative Dentistry", "Clinic Oversight & Quality Control", "Patient Consultation", "Treatment Supervision"],
+      branch: "Həzi Aslanov & Gənclik",
+      schedule: {
+        days: "Həftə içi (Weekdays)",
+        hours: "10:00 - 17:00",
+        note: "Bazar günü: Bağlı (Sunday: Closed)"
+      }
+    },
+    2: {
+      name: "Dr. Nurlan Cavadzadə",
+      specialty: "Ortoped Stomatoloq",
+      specialtyFull: "Orthopedic Dentist & Prosthetics Specialist",
+      experience: "8+",
+      image: "/images/doctors/javadzadeh.jpg",
+      education: "Azerbaijan Medical University, Orthopedic Dentistry & Prosthetics Specialist",
+      bio: "Dr. Nurlan Cavadzadə is a highly skilled orthopedic dentist with over 8 years of professional experience specializing in crowns, bridges, and dental prosthetics. His expertise ensures perfect functional and aesthetic results, combining advanced techniques with artistic precision to restore beautiful, natural-looking smiles.",
+      expertise: ["Dental Crowns & Bridges", "Prosthetic Dentistry", "Smile Design & Restoration", "Functional Dental Rehabilitation"],
+      services: ["Porcelain & Ceramic Crowns", "Fixed & Removable Bridges", "Complete & Partial Dentures", "Implant-Supported Prosthetics", "Smile Makeover", "Dental Veneers"],
+      branch: "Həzi Aslanov & Gənclik",
+      schedule: {
+        days: "Hər gün (Every day)",
+        hours: "11:00 - 19:30",
+        note: "Bazar günü: Bağlı (Sunday: Closed)"
+      }
+    },
+    4: {
+      name: "Dr. Ayşən Abbaslı",
+      specialty: "Pedodont, Ortodont",
+      specialtyFull: "Children's Dentist & Orthodontist",
+      experience: "10+",
+      image: "/videos/aytenabbasli.mp4",
+      education: "Azerbaijan Medical University, Pediatric Dentistry & Orthodontics Specialist",
+      bio: "Dr. Ayşən Abbaslı is a highly experienced pediatric dentist and orthodontist with over 10 years of professional practice. She specializes in creating positive dental experiences for children while providing comprehensive orthodontic solutions for patients of all ages. Her gentle approach and expertise in child psychology make her the perfect choice for families seeking quality dental care.",
+      expertise: ["Pediatric Dentistry", "Orthodontic Treatment Planning", "Early Intervention Orthodontics", "Child Behavior Management"],
+      services: ["Children's Dental Checkups", "Orthodontic Braces & Aligners", "Preventive Care & Fluoride Treatments", "Dental Development Monitoring", "Early Orthodontic Assessment", "Cavity Treatment for Children"],
+      branch: "Həzi Aslanov & Gənclik",
+      schedule: {
+        days: "Mon, Wed, Fri: 11:00-19:00 | Sat: 11:00-15:00",
+        hours: "Varies by day",
+        note: "Bazar günü: Bağlı (Sunday: Closed)"
+      }
+    },
+    5: {
+      name: "Dr. Emin Nağıyev",
+      specialty: "Ortoped Stomatoloq",
+      specialtyFull: "Orthopedic Dentist & Cosmetic Restorations Specialist",
+      experience: "10+",
+      image: "/videos/eminnagiyev.mp4",
+      education: "Azerbaijan Medical University, Advanced Orthopedic Dentistry & Cosmetic Restorations",
+      bio: "Dr. Emin Nağıyev is an expert orthopedic dentist with over 10 years of professional experience providing advanced restorative treatments and cosmetic dental solutions. His precision and artistic care ensure both functional excellence and beautiful aesthetic results for every patient.",
+      expertise: ["Advanced Restorative Dentistry", "Cosmetic Smile Design", "Porcelain Veneers", "Dental Crown Fabrication"],
+      services: ["Porcelain & Zirconia Crowns", "Aesthetic Veneers", "Fixed Bridges", "Complete Smile Makeover", "Tooth Reconstruction", "Color Matching & Aesthetics"],
+      branch: "Gənclik Filialı",
+      schedule: {
+        days: "Mon, Wed, Fri: 10:00-14:00 | Tue, Thu, Sat: 14:00-19:30",
+        hours: "Varies by day",
+        note: "Bazar günü: Bağlı (Sunday: Closed)"
+      }
+    },
+    6: {
+      name: "Dr. Zülfüqar Baxşılı",
+      specialty: "Endodont",
+      specialtyFull: "Root Canal Specialist & Endodontic Expert",
+      experience: "12+",
+      image: "/images/doctors/placeholder.jpg",
+      education: "Azerbaijan Medical University, Advanced Endodontics & Microsurgery Specialist",
+      bio: "Dr. Zülfüqar Baxşılı is a highly experienced endodontist with over 12 years of professional practice specializing in endodontic treatments. He focuses on root canal therapy and saving natural teeth with advanced techniques, ensuring pain-free procedures and successful tooth preservation.",
+      expertise: ["Advanced Root Canal Therapy", "Endodontic Microsurgery", "Tooth Pain Management", "Natural Tooth Preservation"],
+      services: ["Root Canal Treatment", "Endodontic Retreatment", "Apicoectomy (Root-End Surgery)", "Trauma Management", "Dental Pain Relief", "Microscopic Endodontics"],
+      branch: "Gənclik Filialı",
+      schedule: {
+        days: "Mon, Fri: 14:00-19:30 | Tue, Thu, Sat: 10:00-14:00",
+        hours: "Varies by day",
+        note: "Bazar günü: Bağlı (Sunday: Closed)"
+      }
+    },
+    7: {
+      name: "Dr. Aysu İsmayılova",
+      specialty: "Endodont",
+      specialtyFull: "Root Canal Specialist & Endodontic Care Expert",
+      experience: "8+",
+      image: "/videos/aysu.mp4",
+      education: "Azerbaijan Medical University, Endodontics & Pain Management Specialist",
+      bio: "Dr. Aysu İsmayılova is a skilled endodontist with over 8 years of professional experience providing gentle and effective root canal treatments. She uses modern techniques and patient-centered care to ensure maximum comfort during procedures while achieving excellent treatment outcomes.",
+      expertise: ["Gentle Root Canal Therapy", "Patient Comfort & Pain Management", "Modern Endodontic Techniques", "Emergency Dental Care"],
+      services: ["Root Canal Treatment", "Pulp Therapy", "Emergency Toothache Relief", "Endodontic Diagnosis", "Tooth Preservation Therapy", "Post-Treatment Care"],
+      branch: "Gənclik Filialı",
+      schedule: {
+        days: "Tue, Thu, Sat",
+        hours: "10:00 - 19:30",
+        note: "Bazar günü: Bağlı (Sunday: Closed)"
+      }
+    }
+  };
+
+  const modal = document.getElementById('doctorModal');
+  const modalBody = document.getElementById('modalBody');
+  const closeModal = document.getElementById('closeModal');
+  const learnMoreButtons = document.querySelectorAll('.btn-learn-more');
+
+  console.log('🎯 Modal elements found:', {
+    modal: !!modal,
+    modalBody: !!modalBody,
+    closeModal: !!closeModal,
+    buttonsCount: learnMoreButtons.length
+  });
+
+  learnMoreButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const doctorId = button.dataset.doctorId;
+      const doctor = doctorData[doctorId];
+
+      console.log('🔍 Opening modal for doctor ID:', doctorId);
+      console.log('📋 Doctor data:', doctor);
+
+      if (doctor) {
+        const lang = getCurrentLanguage();
+        const translations = getTranslations();
+
+        const educationLabel = translations[lang]?.clinic_modal_education || 'Education';
+        const experienceLabel = translations[lang]?.clinic_experience || 'Experience';
+        const aboutLabel = translations[lang]?.clinic_modal_about || 'About';
+        const servicesLabel = translations[lang]?.clinic_modal_services || 'Services';
+        const yearsPracticeLabel = translations[lang]?.clinic_modal_years_practice || 'years of professional practice';
+        const scheduleLabel = translations[lang]?.clinic_modal_schedule || 'Work Schedule';
+        const locationLabel = translations[lang]?.clinic_modal_location || 'Branch';
+        const lunchLabel = translations[lang]?.clinic_schedule_lunch || 'Lunch break: 13:00 - 14:00';
+
+        const specialtyDisplay = doctor.specialtyFull || doctor.specialty;
+        
+        // Check if image is a video
+        const isVideo = doctor.image.endsWith('.mp4') || doctor.image.endsWith('.webm');
+        const mediaElement = isVideo
+          ? `<video src="${doctor.image}" class="modal-doctor-img" autoplay loop muted playsinline></video>`
+          : `<img src="${doctor.image}" alt="${doctor.name}" class="modal-doctor-img" />`;
+
+        modalBody.innerHTML = `
+          <div class="modal-layout">
+            <!-- LEFT COLUMN - Photo/Video -->
+            <div class="modal-left">
+              ${mediaElement}
+            </div>
+
+            <!-- RIGHT COLUMN - Info -->
+            <div class="modal-right">
+              <div class="modal-header">
+                <h2>${doctor.name}</h2>
+                <p class="modal-specialty">${specialtyDisplay}</p>
+              </div>
+
+              <div class="modal-body-content">
+                <!-- Info Items -->
+                <div class="modal-info-item">
+                  <h4><svg width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg> ${aboutLabel}</h4>
+                  <p>${doctor.bio}</p>
+                </div>
+
+                <div class="modal-info-item">
+                  <h4><svg width="18" height="18" fill="currentColor"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/></svg> ${educationLabel}</h4>
+                  <p>${doctor.education}</p>
+                </div>
+
+                <div class="modal-info-item">
+                  <h4><svg width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/></svg> ${locationLabel}</h4>
+                  <p><strong>${doctor.branch}</strong></p>
+                </div>
+
+                <div class="modal-info-item">
+                  <h4><svg width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                  </svg> ${scheduleLabel}</h4>
+                  <p><strong>Days:</strong> ${doctor.schedule.days}</p>
+                  <p><strong>Hours:</strong> ${doctor.schedule.hours}</p>
+                  <p class="lunch-break-note"><strong>⚠ ${lunchLabel}</strong></p>
+                  ${doctor.schedule.note ? `<p class="schedule-note">${doctor.schedule.note}</p>` : ''}
+                </div>
+
+                ${doctor.expertise ? `
+                <div class="modal-info-item">
+                  <h4><svg width="18" height="18" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Expertise</h4>
+                  <div class="expertise-list">
+                    ${doctor.expertise.map(item => `<span class="tag">${item}</span>`).join('')}
+                  </div>
+                </div>
+                ` : ''}
+
+                <div class="modal-info-item">
+                  <h4><svg width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"/></svg> ${servicesLabel}</h4>
+                  <ul class="services-list">
+                    ${doctor.services.map(service => `<li>${service}</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  closeModal?.addEventListener('click', () => {
+    modal?.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  modal?.querySelector('.modal-overlay')?.addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  // Collapse Doctors Button
+  const collapseButtons = document.querySelectorAll('.btn-collapse-doctors');
+
+  collapseButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const clinicId = btn.dataset.collapseBtn;
+      const doctorsList = document.querySelector(`[data-doctors-list="${clinicId}"]`);
+      const btnText = btn.querySelector('span');
+      const btnIcon = btn.querySelector('svg');
+
+      if (doctorsList && doctorsList.style.display === 'none') {
+        doctorsList.style.display = 'grid';
+        const lang = localStorage.getItem('language') || 'az';
+        const translations = window.__translations__ || {};
+        if (btnText) btnText.textContent = translations[lang]?.clinic_btn_collapse || 'Yığ';
+        if (btnIcon) btnIcon.innerHTML = '<path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/>';
+      } else if (doctorsList) {
+        doctorsList.style.display = 'none';
+        const lang = localStorage.getItem('language') || 'az';
+        const translations = window.__translations__ || {};
+        if (btnText) btnText.textContent = translations[lang]?.clinic_btn_show || 'Göstər';
+        if (btnIcon) btnIcon.innerHTML = '<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>';
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  /* =========================================
+     GLOBAL MODAL STYLES (Injected via JS)
+     ========================================= */
+  
+  /* Doctor Modal Container */
+  .doctor-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .doctor-modal.active {
+    display: flex !important;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+    z-index: 9998 !important;
+  }
+
+  .modal-content {
+    position: relative;
+    background: var(--bg-primary);
+    border-radius: 20px;
+    max-width: 1100px;
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10000 !important;
+    overflow: hidden;
+  }
+
+  .modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* Modal Layout - Two Columns */
+  .modal-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    background: white;
+    overflow: hidden;
+  }
+
+  /* Left Column - Photo */
+  .modal-left {
+    width: 35%;
+    min-width: 300px;
+    background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .modal-doctor-img,
+  video.modal-doctor-img {
+    width: 100%;
+    max-width: 280px;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Right Column - Info */
+  .modal-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .modal-header {
+    padding: 35px 40px 25px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-secondary);
+  }
+
+  .modal-header h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+  }
+
+  .modal-specialty {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+  }
+
+  .modal-body-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px 40px;
+    min-height: 0;
+  }
+
+  .modal-body-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-body-content::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  .modal-body-content::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+  }
+
+  /* Info Items */
+  .modal-info-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-info-item:last-child {
+    border-bottom: none;
+  }
+
+  .modal-info-item h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .modal-info-item h4 svg {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .modal-info-item p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+  }
+
+  .modal-info-item p strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .schedule-note {
+    color: var(--primary);
+    background: rgba(25,84,179,0.1);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px !important;
+  }
+
+  .lunch-break-note {
+    color: #DC2626;
+    font-size: 14px;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Expertise Tags */
+  .expertise-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(217,119,6,0.15) 100%);
+    border: 1.5px solid rgba(245,158,11,0.4);
+    border-radius: 50px;
+    color: #D97706;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  /* Services List */
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .services-list li {
+    padding: 10px 14px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .services-list li:hover {
+    border-color: #10B981;
+    background: rgba(16,185,129,0.05);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    color: white;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .modal-layout {
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .modal-left {
+      width: 100%;
+      min-width: 0;
+      height: 250px;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+
+    .modal-doctor-img {
+      max-width: 180px;
+      max-height: 210px;
+    }
+
+    .modal-right {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+    
+    .modal-body-content {
+      overflow: visible;
+    }
+
+    .services-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<style>
+  /* Scoped Styles for Clinic Locations Page */
+  .clinic-locations-section {
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: var(--bg-secondary);
+    color: var(--primary);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .section-header-center .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .section-header-center .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Clinic Selector */
+  .clinic-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .clinic-option {
+    position: relative;
+    background: var(--bg-primary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .clinic-option:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .clinic-option.active {
+    border-color: var(--primary);
+    background: var(--bg-secondary);
+    box-shadow: 0 0 0 4px rgba(25, 84, 179, 0.1);
+  }
+
+  .clinic-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .clinic-option.active .clinic-icon {
+    background: var(--primary);
+    color: white;
+  }
+
+  .clinic-info {
+    flex: 1;
+    text-align: left;
+  }
+
+  .clinic-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .clinic-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .clinic-check {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+
+  .clinic-option.active .clinic-check {
+    opacity: 1;
+    background: var(--primary);
+  }
+
+  /* Doctors Grid */
+  .doctors-grid {
+    margin-top: 60px;
+  }
+
+  .doctors-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .clinic-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .btn-collapse-doctors {
+    background: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-collapse-doctors:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(25, 84, 179, 0.3);
+  }
+
+  .doctors-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .doctor-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .doctor-card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-6px);
+  }
+
+  .doctor-image {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--bg-gray);
+  }
+
+  .card-doctor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  /* Video styling for cards */
+  video.card-doctor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .doctor-card:hover .card-doctor-img {
+    transform: scale(1.05);
+  }
+
+  .doctor-badge {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .doctor-details {
+    padding: 24px;
+  }
+
+  .doctor-details h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .doctor-specialty {
+    font-size: 15px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .doctor-experience {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .doctor-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-learn-more {
+    flex: 1;
+    background: var(--bg-primary);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-learn-more:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-whatsapp-book {
+    flex: 1;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-whatsapp-book:hover {
+    background: linear-gradient(135deg, #20BA5A 0%, #0F7A6E 100%);
+    transform: translateY(-2px);
+  }
+
+  /* Doctor Modal */
+  .doctor-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .doctor-modal.active {
+    display: flex !important;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+    z-index: 9998 !important;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-content {
+    position: relative;
+    background: var(--bg-primary);
+    border-radius: 20px;
+    max-width: 1100px;
+    width: 100%;
+    height: 85vh; /* Fixed height to ensure layout stability */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10000 !important;
+    overflow: hidden;
+  }
+
+  .modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* ===== SIMPLIFIED MODAL STYLES ===== */
+  
+  /* Modal Layout - Two Columns */
+  .modal-layout {
+    display: flex;
+    flex-direction: row; /* Force row layout */
+    height: 100%;
+    width: 100%;
+    background: white;
+    overflow: hidden;
+  }
+
+  /* Left Column - Photo (30%) */
+  .modal-left {
+    width: 30%;
+    min-width: 280px; /* Ensure it doesn't get too small */
+    background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .modal-doctor-img {
+    width: 100%;
+    max-width: 260px;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Video styling for modal */
+  video.modal-doctor-img {
+    width: 100%;
+    max-width: 260px;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Right Column - Info (70%) */
+  .modal-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .modal-header {
+    padding: 35px 40px 25px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-secondary);
+  }
+
+  .modal-header h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+  }
+
+  .modal-specialty {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+  }
+
+  .modal-body-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px 40px;
+    /* Ensure content is visible */
+    min-height: 0;
+  }
+
+  .modal-body-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-body-content::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  .modal-body-content::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+  }
+
+  /* Info Items */
+  .modal-info-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-info-item:last-child {
+    border-bottom: none;
+  }
+
+  .modal-info-item h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .modal-info-item h4 svg {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .modal-info-item p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+  }
+
+  .modal-info-item p strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .schedule-note {
+    color: var(--primary);
+    background: rgba(25,84,179,0.1);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px !important;
+  }
+
+  .lunch-break-note {
+    color: #DC2626; /* Red color for warning */
+    font-size: 14px;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Expertise Tags */
+  .expertise-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(217,119,6,0.15) 100%);
+    border: 1.5px solid rgba(245,158,11,0.4);
+    border-radius: 50px;
+    color: #D97706;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  /* Services List */
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .services-list li {
+    padding: 10px 14px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .services-list li:hover {
+    border-color: #10B981;
+    background: rgba(16,185,129,0.05);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .modal-layout {
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .modal-left {
+      width: 100%;
+      min-width: 0;
+      height: 250px;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+
+    .modal-doctor-img {
+      max-width: 180px;
+      max-height: 210px;
+    }
+
+    .modal-right {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+    
+    .modal-body-content {
+      overflow: visible;
+    }
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    color: white;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  @media (max-width: 968px) {
+    .clinic-selector {
+      grid-template-columns: 1fr;
+    }
+
+    .doctors-cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .section-header-center .section-title {
+      font-size: 32px;
+    }
+
+    .clinic-title {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .doctors-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .clinic-option {
+      padding: 20px 16px;
+    }
+
+    .clinic-info h3 {
+      font-size: 18px;
+    }
+  }
+</style>

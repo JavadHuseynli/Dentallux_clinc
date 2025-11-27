@@ -1,0 +1,284 @@
+---
+// Contact Component with Contact Form
+---
+
+<section id="contact" class="contact-section section-padding">
+  <div class="container-custom">
+    <div class="contact-grid">
+      <!-- Left: Contact Info -->
+      <div class="contact-info">
+        <h2 class="section-title" data-i18n="contact_title">Bizimlə Əlaqə Saxlayın</h2>
+        <p class="section-subtitle" data-i18n="contact_subtitle">
+          Hər Hansı Sual və ya Qəbul Üçün Bizə Müraciət Edin
+        </p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <h4 data-i18n="contact_address">Ünvan</h4>
+              <p><strong>Həzi Aslanov Filialı</strong><br>Ayna Sultanova küçəsi, Şəmsi Rəhimov 55c<br>Bakı, Azərbaycan</p>
+              <p style="margin-top: 12px;"><strong>Gənclik Filialı</strong><br>Xətai rayonu, İlqar Zülfüqarov 161<br>Bakı, Azərbaycan</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 data-i18n="contact_phone">Telefon</h4>
+              <p>+994 50 326 32 23</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 data-i18n="contact_email">Email</h4>
+              <p>info@dentaluxbaku.com</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <h4 data-i18n="contact_hours">İş Saatları</h4>
+              <p>Bazar ertəsi - Cümə: 10:00 - 19:30<br>Şənbə: 10:00 - 15:00<br><strong style="color: var(--primary);">Bazar günü bağlıdır</strong><br><em style="font-size: 13px; color: var(--text-secondary);">⚠️ Nahar fasiləsi: 13:00 - 14:00</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="contact-form-wrapper">
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="How can we help?" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us more about your inquiry..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            Send Message
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-info {
+    position: sticky;
+    top: 100px;
+  }
+
+  .contact-info .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .contact-info .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .info-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .info-item h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .info-item p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .contact-form-wrapper {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--bg-primary);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(25, 84, 179, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-submit {
+    background: var(--primary);
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-submit:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(25, 84, 179, 0.3);
+  }
+
+  @media (max-width: 968px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .contact-info {
+      position: static;
+    }
+
+    .contact-form-wrapper {
+      padding: 30px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .contact-form-wrapper {
+      padding: 24px;
+    }
+
+    .contact-info .section-title {
+      font-size: 30px;
+    }
+  }
+</style>

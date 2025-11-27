@@ -1,0 +1,77 @@
+---
+// Testimonials Component - Frame 37 Design
+---
+
+<section id="testimonials" class="testimonials-section section-padding">
+  <div class="container-custom">
+    <div class="section-header">
+      <div>
+        <span class="section-badge">RƏYLƏR</span>
+        <h2 class="section-title">Google Rəyləri</h2>
+        <p class="section-subtitle">Pasiyentlərimizin Google-da bizim haqqımızda yazdıqları rəylər</p>
+      </div>
+    </div>
+
+    <div class="google-reviews-wrapper">
+      <!-- Elfsight Google Reviews Widget -->
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-0c595c8a-f361-4a5c-a7fd-793cbbbeacff" data-elfsight-app-lazy></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    background: var(--bg-primary);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: var(--bg-secondary);
+    color: var(--primary);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .google-reviews-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 968px) {
+    .section-title {
+      font-size: 34px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-title {
+      font-size: 30px;
+    }
+  }
+</style>

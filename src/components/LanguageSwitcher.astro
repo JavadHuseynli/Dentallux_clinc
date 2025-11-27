@@ -1,0 +1,112 @@
+---
+// Language Switcher Component
+---
+
+<div class="language-switcher">
+  <button class="lang-btn active" data-lang="az">AZ</button>
+  <button class="lang-btn" data-lang="en">EN</button>
+  <button class="lang-btn" data-lang="ru">RU</button>
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .lang-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .lang-btn:hover {
+    background: var(--bg-gray);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .lang-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .language-switcher {
+      justify-content: center;
+      padding: 12px 0;
+    }
+  }
+</style>
+
+<script>
+  // Language switcher functionality
+  const langButtons = document.querySelectorAll('.lang-btn');
+
+  // Get saved language or default to 'az'
+  let currentLang = localStorage.getItem('language') || 'az';
+
+  // Set active button on load
+  langButtons.forEach(btn => {
+    if (btn.getAttribute('data-lang') === currentLang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+
+      // Update active state
+      langButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Save to localStorage
+      localStorage.setItem('language', lang);
+
+      // Dispatch custom event for language change
+      window.dispatchEvent(new CustomEvent('languageChange', { detail: { language: lang } }));
+
+      // Update page content
+      updatePageLanguage(lang);
+    });
+  });
+
+  function updatePageLanguage(lang) {
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (key) {
+        const translation = getTranslation(lang, key);
+        if (translation) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.setAttribute('placeholder', translation);
+          } else {
+            element.textContent = translation;
+          }
+        }
+      }
+    });
+  }
+
+  function getTranslation(lang, key) {
+    // This will be populated by inline translations
+    const translations = window.__translations__;
+    return translations?.[lang]?.[key];
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updatePageLanguage(currentLang);
+  });
+</script>
