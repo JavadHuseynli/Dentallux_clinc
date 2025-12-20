@@ -1,5 +1,6 @@
 ---
 // Hero Component - Frame 132 Design
+import { clinics } from '../data/clinicData.js';
 ---
 
 <section id="home" class="hero-section">
@@ -16,6 +17,17 @@
         <p class="hero-description" data-i18n="hero_description">
           Rahat və Dostcasına Mühitdə Bütün Yaşlar Üçün Əhatəli Diş Yardımı
         </p>
+
+        <div class="location-selector-container">
+          <label for="heroLocationSelect" class="location-label" data-i18n="clinic_title">Klinika Məkanınızı Seçin</label>
+          <div class="location-selector-wrapper">
+            <select id="heroLocationSelect" class="location-select" aria-label="Select Clinic Location">
+              {clinics.map(clinic => (
+                <option value={clinic.id}>{clinic.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
 
         <div class="hero-buttons">
           <a href="#appointment" class="btn-primary">
@@ -56,6 +68,7 @@
       <div class="hero-image-area">
         <div class="main-video">
           <video
+            id="heroVideo"
             src="/videos/dentluxvideo.mp4"
             autoplay
             loop
@@ -78,6 +91,62 @@
     </div>
   </div>
 </section>
+
+<script>
+  const heroVideo = document.getElementById('heroVideo');
+  const locationSelect = document.getElementById('heroLocationSelect');
+
+  const updateVideo = (clinicId) => {
+    if (!heroVideo) return;
+    
+    let videoSrc = '/videos/dentluxvideo.mp4'; // Default (Ganjlik)
+    
+    if (clinicId === 'hazi-aslanov') {
+      videoSrc = '/videos/hazi.mp4';
+    }
+    
+    // Only update if changed to avoid reloading
+    if (!heroVideo.src.endsWith(videoSrc)) {
+      heroVideo.src = videoSrc;
+      heroVideo.load();
+      heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
+    }
+  };
+
+  // Initialize
+  const savedLocation = localStorage.getItem('selectedClinic') || 'ganjlik';
+  
+  // Set initial select value and listener
+  if (locationSelect) {
+    locationSelect.value = savedLocation;
+    
+    locationSelect.addEventListener('change', (e) => {
+      // @ts-ignore
+      const newLocation = e.target.value;
+      localStorage.setItem('selectedClinic', newLocation);
+      
+      // Dispatch event for other components
+      window.dispatchEvent(new CustomEvent('clinicChanged', { 
+        detail: newLocation 
+      }));
+      
+      updateVideo(newLocation);
+    });
+  }
+
+  // Initial video update
+  updateVideo(savedLocation);
+
+  // Listen for changes from other sources
+  window.addEventListener('clinicChanged', (e) => {
+    // @ts-ignore
+    const newLocation = e.detail;
+    updateVideo(newLocation);
+    if (locationSelect && locationSelect instanceof HTMLSelectElement && locationSelect.value !== newLocation) {
+      locationSelect.value = newLocation;
+    }
+  });
+</script>
 
 <style>
   .hero-section {
@@ -122,6 +191,58 @@
     line-height: 1.7;
     margin-bottom: 32px;
     max-width: 480px;
+  }
+
+  .location-selector-container {
+    margin-bottom: 36px;
+    max-width: 360px;
+    background: var(--bg-primary);
+    padding: 8px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+  }
+
+  .location-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .location-selector-wrapper {
+    position: relative;
+  }
+
+  .location-select {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230099FF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 24px;
+  }
+
+  .location-select:hover {
+    background-color: var(--bg-gray);
+  }
+
+  .location-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: var(--bg-primary);
+    box-shadow: 0 0 0 4px rgba(25, 84, 179, 0.1);
   }
 
   .hero-buttons {
@@ -336,6 +457,16 @@
   @media (max-width: 640px) {
     .hero-title {
       font-size: 36px;
+    }
+
+    .location-selector-container {
+      max-width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .location-select {
+      font-size: 16px;
+      padding: 14px 16px;
     }
 
     .hero-buttons {

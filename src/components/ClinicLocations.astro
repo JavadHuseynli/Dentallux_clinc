@@ -1,126 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-
-// Clinic Locations Selector Component
-const clinics = [
-  {
-    id: "hazi-aslanov",
-    name: "Həzi Aslanov Filialı",
-    address:  "Xətai rayonu, İlqar Zülfüqarov küçəsi 161, Bakı, Azərbaycan",
-    phone: "994503263223",
-    whatsapp: "994503263223",
-    doctors: [
-      {
-        id: 8,
-        name: "Dr. İsgəndər Manafov",
-        specialty: "Direktor",
-        experience: "15+",
-        image: "/images/doctors/isgenderdoc.jpg",
-        whatsapp: "994503263223",
-        branch: "hazi-aslanov"
-      },
-      {
-        id: 1,
-        name: "Dr. Aytən Zamanova",
-        specialty: "Baş həkim",
-        experience: "8+",
-        image: "/images/doctors/drayten.png",
-        whatsapp: "994503263223",
-        branch: "hazi-aslanov"
-      },
-      {
-        id: 2,
-        name: "Dr. Nurlan Cavadzadə",
-        specialty: "Ortoped Stomatoloq",
-        experience: "8+",
-        image: "/images/doctors/javadzadeh.jpg",
-        whatsapp: "994503263223",
-        branch: "hazi-aslanov"
-      },
-      {
-        id: 4,
-        name: "Dr. Ayşən Abbaslı",
-        specialty: "Pedodont, Ortodont",
-        experience: "10+",
-        image: "/images/doctors/dr_aysen.jpg",
-        whatsapp: "994503263223",
-        branch: "hazi-aslanov"
-      }
-    ]
-  },
-  {
-    id: "ganjlik",
-    name: "Gənclik Filialı",
-    address:"Ayna Sultanova küçəsi, Şəmsi Rəhimov 55c, Bakı, Azərbaycan" ,
-    phone: "994503263223",
-    whatsapp: "994503263223",
-    doctors: [
-      {
-        id: 8,
-        name: "Dr. İsgəndər Manafov",
-        specialty: "Direktor",
-        experience: "15+",
-        image: "/images/doctors/isgenderdoc.jpg",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      },
-      {
-        id: 1,
-        name: "Dr. Aytən Zamanova",
-        specialty: "Baş həkim",
-        experience: "8+",
-        image: "/images/doctors/drayten.png",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      },
-      {
-        id: 4,
-        name: "Dr. Ayşən Abbaslı",
-        specialty: "Pedodont, Ortodont",
-        experience: "10+",
-        image: "/images/doctors/dr_aysen.jpg",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      },
-      {
-        id: 2,
-        name: "Dr. Nurlan Cavadzadə",
-        specialty: "Ortoped Stomatoloq",
-        experience: "8+",
-        image: "/images/doctors/javadzadeh.jpg",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      },
-      {
-        id: 5,
-        name: "Dr. Emin Nağıyev",
-        specialty: "Ortoped Stomatoloq",
-        experience: "10+",
-        image: "/images/doctors/nagiyev_emil.jpeg",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      },
-      {
-        id: 6,
-        name: "Dr. Zülfüqar Baxşılı",
-        specialty: "Endodont",
-        experience: "12+",
-        image: "/images/doctors/placeholder.jpg",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      },
-      {
-        id: 7,
-        name: "Dr. Aysu İsmayılova",
-        specialty: "Endodont",
-        experience: "8+",
-        image: "/images/doctors/aysu.jpg",
-        whatsapp: "994503263223",
-        branch: "ganjlik"
-      }
-    ]
-  }
-];
+import { clinics, doctorData } from '../data/clinicData.js';
 ---
 
 <section id="clinics" class="clinic-locations-section section-padding">
@@ -131,29 +11,6 @@ const clinics = [
       <p class="section-subtitle" data-i18n="clinic_subtitle">
         Sizə Ən Yaxın Filialımızı Tapın
       </p>
-    </div>
-
-    <!-- Clinic Selector -->
-    <div class="clinic-selector">
-      {clinics.map((clinic, index) => (
-        <button
-          class="clinic-option"
-          data-clinic={clinic.id}
-        >
-          <div class="clinic-icon">
-            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div class="clinic-info">
-            <h3>{clinic.name}</h3>
-            <p>{clinic.address}</p>
-          </div>
-          <div class="clinic-check">
-          
-          </div>
-        </button>
-      ))}
     </div>
 
     <!-- Doctors Grid for Each Clinic -->
@@ -253,28 +110,27 @@ const clinics = [
   const getCurrentLanguage = () => localStorage.getItem('language') || 'az';
   const getTranslations = () => (window as any).__translations__ || {};
 
-  // Clinic selector functionality
-  const clinicOptions = document.querySelectorAll('.clinic-option');
+  // Clinic selector functionality - NOW HANDLED GLOBALLY
   const doctorsGrids = document.querySelectorAll('[data-clinic-doctors]');
 
-  clinicOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      const clinicId = option.dataset.clinic;
-
-      // Update active clinic
-      clinicOptions.forEach(opt => opt.classList.remove('active'));
-      option.classList.add('active');
-
-      // Show corresponding doctors
-      doctorsGrids.forEach(grid => {
-        if (grid.dataset.clinicDoctors === clinicId) {
-          grid.style.display = 'block';
-        } else {
-          grid.style.display = 'none';
-        }
-      });
+  const updateVisibleClinic = (clinicId) => {
+    doctorsGrids.forEach(grid => {
+      if (grid.dataset.clinicDoctors === clinicId) {
+        grid.style.display = 'block';
+      } else {
+        grid.style.display = 'none';
+      }
     });
+  };
+
+  // Listen for global clinic changes
+  window.addEventListener('clinicChanged', (e) => {
+    updateVisibleClinic(e.detail);
   });
+
+  // Initial check
+  const savedLocation = localStorage.getItem('selectedClinic') || 'ganjlik';
+  updateVisibleClinic(savedLocation);
 
   // Update WhatsApp links with translated message
   const updateWhatsAppLinks = () => {
@@ -364,23 +220,6 @@ const clinics = [
       branch: "Həzi Aslanov & Gənclik",
       schedule: {
         days: "Mon, Wed, Fri: 11:00-19:00 | Sat: 11:00-15:00",
-        hours: "Varies by day",
-        note: "Bazar günü: Bağlı (Sunday: Closed)"
-      }
-    },
-    5: {
-      name: "Dr. Emin Nağıyev",
-      specialty: "Ortoped Stomatoloq",
-      specialtyFull: "Orthopedic Dentist & Cosmetic Restorations Specialist",
-      experience: "10+",
-      image: "/videos/eminnagiyev.mp4",
-      education: "Azerbaijan Medical University, Advanced Orthopedic Dentistry & Cosmetic Restorations",
-      bio: "Dr. Emin Nağıyev is an expert orthopedic dentist with over 10 years of professional experience providing advanced restorative treatments and cosmetic dental solutions. His precision and artistic care ensure both functional excellence and beautiful aesthetic results for every patient.",
-      expertise: ["Advanced Restorative Dentistry", "Cosmetic Smile Design", "Porcelain Veneers", "Dental Crown Fabrication"],
-      services: ["Porcelain & Zirconia Crowns", "Aesthetic Veneers", "Fixed Bridges", "Complete Smile Makeover", "Tooth Reconstruction", "Color Matching & Aesthetics"],
-      branch: "Gənclik Filialı",
-      schedule: {
-        days: "Mon, Wed, Fri: 10:00-14:00 | Tue, Thu, Sat: 14:00-19:30",
         hours: "Varies by day",
         note: "Bazar günü: Bağlı (Sunday: Closed)"
       }
