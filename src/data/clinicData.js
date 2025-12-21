@@ -10,7 +10,7 @@ export const clinics = [
         id: 8,
         name: "Dr. İsgəndər Manafov",
         specialty: "Direktor",
-        experience: "15+",
+        experience: "3",
         image: "/images/doctors/isgenderdoc.jpg",
         whatsapp: "994503263223",
         branch: "hazi-aslanov"
@@ -19,7 +19,7 @@ export const clinics = [
         id: 1,
         name: "Dr. Aytən Zamanova",
         specialty: "Baş həkim",
-        experience: "8+",
+        experience: "4",
         image: "/images/doctors/drayten.png",
         whatsapp: "994503263223",
         branch: "hazi-aslanov"
@@ -28,7 +28,7 @@ export const clinics = [
         id: 2,
         name: "Dr. Nurlan Cavadzadə",
         specialty: "Ortoped Stomatoloq",
-        experience: "8+",
+        experience: "4",
         image: "/images/doctors/javadzadeh.jpg",
         whatsapp: "994503263223",
         branch: "hazi-aslanov"
@@ -37,7 +37,7 @@ export const clinics = [
         id: 4,
         name: "Dr. Ayşən Abbaslı",
         specialty: "Pedodont, Ortodont",
-        experience: "10+",
+        experience: "3",
         image: "/images/doctors/dr_aysen.jpg",
         whatsapp: "994503263223",
         branch: "hazi-aslanov"
@@ -55,7 +55,7 @@ export const clinics = [
         id: 8,
         name: "Dr. İsgəndər Manafov",
         specialty: "Direktor",
-        experience: "15+",
+        experience: "3",
         image: "/images/doctors/isgenderdoc.jpg",
         whatsapp: "994503263223",
         branch: "ganjlik"
@@ -64,7 +64,7 @@ export const clinics = [
         id: 1,
         name: "Dr. Aytən Zamanova",
         specialty: "Baş həkim",
-        experience: "8+",
+        experience: "4",
         image: "/images/doctors/drayten.png",
         whatsapp: "994503263223",
         branch: "ganjlik"
@@ -73,7 +73,7 @@ export const clinics = [
         id: 4,
         name: "Dr. Ayşən Abbaslı",
         specialty: "Pedodont, Ortodont",
-        experience: "10+",
+        experience: "3",
         image: "/images/doctors/dr_aysen.jpg",
         whatsapp: "994503263223",
         branch: "ganjlik"
@@ -82,7 +82,7 @@ export const clinics = [
         id: 2,
         name: "Dr. Nurlan Cavadzadə",
         specialty: "Ortoped Stomatoloq",
-        experience: "8+",
+        experience: "4",
         image: "/images/doctors/javadzadeh.jpg",
         whatsapp: "994503263223",
         branch: "ganjlik"
@@ -91,7 +91,7 @@ export const clinics = [
         id: 6,
         name: "Dr. Zülfüqar Baxşılı",
         specialty: "Endodont",
-        experience: "12+",
+        experience: "3",
         image: "/images/doctors/placeholder.jpg",
         whatsapp: "994503263223",
         branch: "ganjlik"
@@ -100,7 +100,7 @@ export const clinics = [
         id: 7,
         name: "Dr. Aysu İsmayılova",
         specialty: "Endodont",
-        experience: "8+",
+        experience: "4",
         image: "/images/doctors/aysu.jpg",
         whatsapp: "994503263223",
         branch: "ganjlik"
@@ -113,103 +113,102 @@ export const doctorData = {
     8: {
       name: "Dr. İsgəndər Manafov",
       specialty: "Direktor",
-      specialtyFull: "Clinic Director",
-      experience: "15+",
+      specialtyFull: "Klinika Direktoru",
+      experience: "3",
       image: "/images/doctors/isgenderdoc.jpg",
-      education: "Azerbaijan Medical University, Health Management & Administration",
-      bio: "Dr. İsgəndər Manafov is the Director of Dentallux Clinic, overseeing all operations to ensure the highest quality of patient care and service excellence. With over 15 years of experience in healthcare management, he leads the clinic with a vision of modern, patient-centered dentistry.",
-      expertise: ["Clinic Management", "Healthcare Administration", "Strategic Planning", "Patient Relations"],
-      services: ["Clinic Administration", "Patient Consultation", "Treatment Coordination", "Quality Assurance"],
+      education: "Azərbaycan Tibb Universiteti, Səhiyyə Menecmenti və İdarəetmə",
+      bio: "Dr. İsgəndər Manafov Dentallux Klinikasının direktoru olaraq, ən yüksək keyfiyyətli xəstə qayğısı və xidmət mükəmməlliyi təmin etmək üçün bütün əməliyyatlara nəzarət edir. 3 illik səhiyyə menecmenti təcrübəsi ilə müasir, pasiyent mərkəzli stomatologiya vizyonu ilə klinikaları idarə edir.",
+      expertise: ["Klinika İdarəetməsi", "Səhiyyə İdarəçiliyi", "Strateji Planlaşdırma", "Pasiyent Əlaqələri"],
+      services: ["Klinika İdarəçiliyi", "Pasiyent Konsultasiyası", "Müalicə Koordinasiyası", "Keyfiyyətə Nəzarət"],
       branch: "Həzi Aslanov & Gənclik",
       schedule: {
-        days: "Monday - Saturday",
+        days: "Bazar ertəsi - Şənbə",
         hours: "09:00 - 18:00",
-        note: "Available by appointment for consultations"
+        note: "Konsultasiyalar üçün görüşlə əlçatandır"
       }
     },
     1: {
       name: "Dr. Aytən Zamanova",
       specialty: "Baş həkim",
-      specialtyFull: "Chief Doctor & General Dentistry Specialist",
-      experience: "8+",
+      specialtyFull: "Baş Həkim və Ümumi Stomatologiya Mütəxəssisi",
+      experience: "4",
       image: "/videos/ayten.mp4",
-      education: "Azerbaijan Medical University, Dentistry & Clinic Management Specialist",
-      bio: "Dr. Aytən Zamanova is the Chief Doctor with over 8 years of extensive experience in general dentistry and clinic management. She ensures the highest standards of patient care across all treatments, leading our team with expertise and dedication to excellence in dental healthcare.",
-      expertise: ["Clinic Management & Leadership", "General Dentistry", "Treatment Planning & Coordination", "Patient Care Standards"],
-      services: ["Comprehensive Dental Checkups", "Teeth Cleaning & Hygiene", "Restorative Dentistry", "Clinic Oversight & Quality Control", "Patient Consultation", "Treatment Supervision"],
+      education: "Azərbaycan Tibb Universiteti, Stomatologiya və Klinika Menecmenti Mütəxəssisi",
+      bio: "Dr. Aytən Zamanova 4 illik geniş təcrübəyə malik Baş Həkimdir və ümumi stomatologiya və klinika idarəetməsi sahəsində ixtisaslaşıb. O, bütün müalicələrdə ən yüksək standartlarda pasiyent qayğısını təmin edir, komandamızı ekspertiza və mükəmməlliyə sadiqlik ilə idarə edir.",
+      expertise: ["Klinika İdarəetməsi və Rəhbərlik", "Ümumi Stomatologiya", "Müalicə Planlaşdırılması və Koordinasiya", "Pasiyent Qayğısı Standartları"],
+      services: ["Əhatəli Diş Müayinələri", "Diş Təmizləməsi və Gigiyena", "Bərpaedici Stomatologiya", "Klinikaya Nəzarət və Keyfiyyətə Nəzarət", "Pasiyent Konsultasiyası", "Müalicəyə Nəzarət"],
       branch: "Həzi Aslanov & Gənclik",
       schedule: {
-        days: "Həftə içi (Weekdays)",
+        days: "Həftə içi",
         hours: "10:00 - 17:00",
-        note: "Bazar günü: Bağlı (Sunday: Closed)"
+        note: "Bazar günü: Bağlı"
       }
     },
     2: {
       name: "Dr. Nurlan Cavadzadə",
       specialty: "Ortoped Stomatoloq",
-      specialtyFull: "Orthopedic Dentist & Prosthetics Specialist",
-      experience: "8+",
+      specialtyFull: "Ortoped Stomatoloq və Protez Mütəxəssisi",
+      experience: "4",
       image: "/images/doctors/javadzadeh.jpg",
-      education: "Azerbaijan Medical University, Orthopedic Dentistry & Prosthetics Specialist",
-      bio: "Dr. Nurlan Cavadzadə is a highly skilled orthopedic dentist with over 8 years of professional experience specializing in crowns, bridges, and dental prosthetics. His expertise ensures perfect functional and aesthetic results, combining advanced techniques with artistic precision to restore beautiful, natural-looking smiles.",
-      expertise: ["Dental Crowns & Bridges", "Prosthetic Dentistry", "Smile Design & Restoration", "Functional Dental Rehabilitation"],
-      services: ["Porcelain & Ceramic Crowns", "Fixed & Removable Bridges", "Complete & Partial Dentures", "Implant-Supported Prosthetics", "Smile Makeover", "Dental Veneers"],
+      education: "Azərbaycan Tibb Universiteti, Ortoped Stomatologiya və Protez Mütəxəssisi",
+      bio: "Dr. Nurlan Cavadzadə 4 illik peşəkar təcrübəyə malik yüksək ixtisaslı ortoped stomaotoloqdur və kronlar, körpülər və diş protezləri üzrə ixtisaslaşıb. Onun ekspertizası mükəmməl funksional və estetik nəticələr təmin edir, qabaqcıl texnikaları bədii dəqiqliklə birləşdirərək gözəl və təbii görünüşlü təbəssümlər bərpa edir.",
+      expertise: ["Diş Kronları və Körpüləri", "Protez Stomatologiya", "Təbəssüm Dizaynı və Bərpası", "Funksional Diş Reabilitasiyası"],
+      services: ["Çini və Keramika Kronlar", "Sabit və Çıxarıla Bilən Körpülər", "Tam və Qismən Protezlər", "İmplantla Dəstəklənən Protezlər", "Təbəssümün Yenilənməsi", "Diş Vinirlər"],
       branch: "Həzi Aslanov & Gənclik",
       schedule: {
-        days: "Hər gün (Every day)",
+        days: "Hər gün",
         hours: "11:00 - 19:30",
-        note: "Bazar günü: Bağlı (Sunday: Closed)"
+        note: "Bazar günü: Bağlı"
       }
     },
     4: {
       name: "Dr. Ayşən Abbaslı",
       specialty: "Pedodont, Ortodont",
-      specialtyFull: "Children's Dentist & Orthodontist",
-      experience: "10+",
+      specialtyFull: "Uşaq Stomatoloqu və Ortodont",
+      experience: "3",
       image: "/videos/aytenabbasli.mp4",
-      education: "Azerbaijan Medical University, Pediatric Dentistry & Orthodontics Specialist",
-      bio: "Dr. Ayşən Abbaslı is a highly experienced pediatric dentist and orthodontist with over 10 years of professional practice. She specializes in creating positive dental experiences for children while providing comprehensive orthodontic solutions for patients of all ages. Her gentle approach and expertise in child psychology make her the perfect choice for families seeking quality dental care.",
-      expertise: ["Pediatric Dentistry", "Orthodontic Treatment Planning", "Early Intervention Orthodontics", "Child Behavior Management"],
-      services: ["Children's Dental Checkups", "Orthodontic Braces & Aligners", "Preventive Care & Fluoride Treatments", "Dental Development Monitoring", "Early Orthodontic Assessment", "Cavity Treatment for Children"],
+      education: "Azərbaycan Tibb Universiteti, Pedodont və Ortodontiya Mütəxəssisi",
+      bio: "Dr. Ayşən Abbaslı 3 illik peşəkar təcrübəyə malik yüksək təcrübəli pedodont və ortodontdur. O, uşaqlar üçün müsbət diş təcrübələri yaratmaqda ixtisaslaşır və eyni zamanda hər yaş qrupundakı pasiyentlər üçün əhatəli ortodontik həllər təqdim edir. Onun zərif yanaşması və uşaq psixologiyası sahəsində ekspertizası onu keyfiyyətli diş qayğısı axtaran ailələr üçün mükəmməl seçim edir.",
+      expertise: ["Pedodont Stomatologiya", "Ortodontik Müalicə Planlaşdırılması", "Erkən Müdaxilə Ortodontiyası", "Uşaq Davranışı İdarəetməsi"],
+      services: ["Uşaqlar üçün Diş Müayinələri", "Ortodontik Breketlər və Düzəldicilər", "Profilaktik Qayğı və Flüor Müalicələri", "Diş İnkişafına Nəzarət", "Erkən Ortodontik Qiymətləndirmə", "Uşaqlarda Çürüklərin Müalicəsi"],
       branch: "Həzi Aslanov & Gənclik",
       schedule: {
-        days: "Mon, Wed, Fri: 11:00-19:00 | Sat: 11:00-15:00",
-        hours: "Varies by day",
-        note: "Bazar günü: Bağlı (Sunday: Closed)"
+        days: "B.e, Ç.a, C: 11:00-19:00 | Şənbə: 11:00-15:00",
+        hours: "Günə görə dəyişir",
+        note: "Bazar günü: Bağlı"
       }
     },
     6: {
       name: "Dr. Zülfüqar Baxşılı",
       specialty: "Endodont",
-      specialtyFull: "Root Canal Specialist & Endodontic Expert",
-      experience: "12+",
+      specialtyFull: "Kanal Müalicəsi Mütəxəssisi və Endodontik Ekspert",
+      experience: "3",
       image: "/images/doctors/placeholder.jpg",
-      education: "Azerbaijan Medical University, Advanced Endodontics & Microsurgery Specialist",
-      bio: "Dr. Zülfüqar Baxşılı is a highly experienced endodontist with over 12 years of professional practice specializing in endodontic treatments. He focuses on root canal therapy and saving natural teeth with advanced techniques, ensuring pain-free procedures and successful tooth preservation.",
-      expertise: ["Advanced Root Canal Therapy", "Endodontic Microsurgery", "Tooth Pain Management", "Natural Tooth Preservation"],
-      services: ["Root Canal Treatment", "Endodontic Retreatment", "Apicoectomy (Root-End Surgery)", "Trauma Management", "Dental Pain Relief", "Microscopic Endodontics"],
+      education: "Azərbaycan Tibb Universiteti, Qabaqcıl Endodontika və Mikrocərrahiyyə Mütəxəssisi",
+      bio: "Dr. Zülfüqar Baxşılı 3 illik peşəkar təcrübəyə malik yüksək ixtisaslı endodontistdir və kanal müalicəsi üzrə ixtisaslaşıb. O, ağrısız prosedurlar və uğurlu diş qorunması təmin edərək, qabaqcıl texnikalarla kanal müalicəsinə və təbii dişlərin xilas edilməsinə fokuslanır.",
+      expertise: ["Qabaqcıl Kanal Müalicəsi", "Endodontik Mikrocərrahiyyə", "Diş Ağrısı İdarəetməsi", "Təbii Diş Qorunması"],
+      services: ["Kanal Müalicəsi", "Endodontik Təkrar Müalicə", "Apikoektomiya (Kök Ucu Cərrahiyyəsi)", "Travma İdarəetməsi", "Diş Ağrısının Aradan Qaldırılması", "Mikroskopik Endodontika"],
       branch: "Gənclik Filialı",
       schedule: {
-        days: "Mon, Fri: 14:00-19:30 | Tue, Thu, Sat: 10:00-14:00",
-        hours: "Varies by day",
-        note: "Bazar günü: Bağlı (Sunday: Closed)"
+        days: "B.e, C: 14:00-19:30 | Ç.a, C.a, Ş: 10:00-14:00",
+        note: "Bazar günü: Bağlı"
       }
     },
     7: {
       name: "Dr. Aysu İsmayılova",
       specialty: "Endodont",
-      specialtyFull: "Root Canal Specialist & Endodontic Care Expert",
-      experience: "8+",
+      specialtyFull: "Kanal Müalicəsi Mütəxəssisi və Endodontik Qayğı Eksperti",
+      experience: "4",
       image: "/videos/aysu.mp4",
-      education: "Azerbaijan Medical University, Endodontics & Pain Management Specialist",
-      bio: "Dr. Aysu İsmayılova is a skilled endodontist with over 8 years of professional experience providing gentle and effective root canal treatments. She uses modern techniques and patient-centered care to ensure maximum comfort during procedures while achieving excellent treatment outcomes.",
-      expertise: ["Gentle Root Canal Therapy", "Patient Comfort & Pain Management", "Modern Endodontic Techniques", "Emergency Dental Care"],
-      services: ["Root Canal Treatment", "Pulp Therapy", "Emergency Toothache Relief", "Endodontic Diagnosis", "Tooth Preservation Therapy", "Post-Treatment Care"],
+      education: "Azərbaycan Tibb Universiteti, Endodontika və Ağrı İdarəetməsi Mütəxəssisi",
+      bio: "Dr. Aysu İsmayılova 4 illik peşəkar təcrübəyə malik bacarıqlı endodontistdir və zərif və effektiv kanal müalicəsi təmin edir. O, prosedurlar zamanı maksimum rahatlığı təmin etmək və əla müalicə nəticələri əldə etmək üçün müasir texnikalardan və pasiyent mərkəzli qayğıdan istifadə edir.",
+      expertise: ["Zərif Kanal Müalicəsi", "Pasiyent Rahatlığı və Ağrı İdarəetməsi", "Müasir Endodontik Texnikalar", "Təcili Diş Qayğısı"],
+      services: ["Kanal Müalicəsi", "Pulp Terapiyası", "Təcili Diş Ağrısı Yardımı", "Endodontik Diaqnoz", "Diş Qorunması Terapiyası", "Müalicə Sonrası Qayğı"],
       branch: "Gənclik Filialı",
       schedule: {
-        days: "Tue, Thu, Sat",
+        days: "Ç.a, C.a, Ş",
         hours: "10:00 - 19:30",
-        note: "Bazar günü: Bağlı (Sunday: Closed)"
+        note: "Bazar günü: Bağlı"
       }
     }
   };
